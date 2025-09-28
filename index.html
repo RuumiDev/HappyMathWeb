@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HappyMath</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="/src/styles.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+</head>
+<body class="overflow-x-hidden bg-transparent m-0 p-0 min-h-screen" style="scroll-behavior: smooth; background: transparent !important; margin: 0; padding: 0; min-height: 100vh; min-height: 100dvh;">
+
+
+<!-----------------Background-------------------->
+<div class="area w-full h-full fixed inset-0 bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#f093fb] -z-10" style="min-height: 100vh; min-height: 100dvh;">
+  <ul class="circles relative w-full h-full overflow-hidden">
+    <li class="circle circle1"></li>
+    <li class="circle circle2"></li>
+    <li class="circle circle3"></li>
+    <li class="circle circle4"></li>
+    <li class="circle circle5"></li>
+    <li class="circle circle6"></li>
+    <li class="circle circle7"></li>
+    <li class="circle circle8"></li>
+    <li class="circle circle9"></li>
+    <li class="circle circle10"></li>
+    <li class="circle circle11"></li>
+    <li class="circle circle12"></li>
+  </ul>
+
+  <!-- Decorations for children themed, bagi nampak menariks -->
+  
+  <div class="stars">
+    <!-- Floating mathematical symbols - Top Section -->
+    <div class="math-symbol" style="top: 5%; left: 15%; animation-delay: 0s;">✨</div>
+    <div class="math-symbol" style="top: 10%; left: 80%; animation-delay: 1s;">⭐</div>
+    <div class="math-symbol" style="top: 20%; left: 10%; animation-delay: 2s;">🌟</div>
+    <div class="math-symbol" style="top: 30%; left: 85%; animation-delay: 3s;">💫</div>
+    <div class="math-symbol" style="top: 40%; left: 20%; animation-delay: 4s;">🔢</div>
+    <div class="math-symbol" style="top: 8%; left: 60%; animation-delay: 5s;">📐</div>
+    <div class="math-symbol" style="top: 35%; left: 65%; animation-delay: 6s;">📏</div>
+    <div class="math-symbol" style="top: 15%; left: 40%; animation-delay: 7s;">🧮</div>
+    
+    <!-- Middle Section Decorations -->
+    <div class="math-symbol" style="top: 50%; left: 25%; animation-delay: 1s;">🎯</div>
+    <div class="math-symbol" style="top: 60%; left: 75%; animation-delay: 2s;">🎪</div>
+    <div class="math-symbol" style="top: 70%; left: 15%; animation-delay: 3s;">🎭</div>
+    <div class="math-symbol" style="top: 55%; left: 90%; animation-delay: 4s;">🎨</div>
+    <div class="math-symbol" style="top: 65%; left: 45%; animation-delay: 5s;">📊</div>
+    
+    <!-- Bottom Section Decorations -->
+    <div class="math-symbol" style="top: 80%; left: 30%; animation-delay: 2s;">🎲</div>
+    <div class="math-symbol" style="top: 90%; left: 70%; animation-delay: 3s;">🎮</div>
+    <div class="math-symbol" style="top: 85%; left: 10%; animation-delay: 4s;">🏆</div>
+    <div class="math-symbol" style="top: 95%; left: 85%; animation-delay: 5s;">🎊</div>
+    
+    <!-- Additional decorative stars throughout -->
+    <div class="star-twinkle" style="top: 12%; left: 90%; animation-delay: 1.5s;">✦</div>
+    <div class="star-twinkle" style="top: 22%; left: 5%; animation-delay: 2.5s;">✧</div>
+    <div class="star-twinkle" style="top: 32%; left: 50%; animation-delay: 3.5s;">⋆</div>
+    <div class="star-twinkle" style="top: 42%; left: 75%; animation-delay: 4.5s;">★</div>
+    <div class="star-twinkle" style="top: 58%; left: 8%; animation-delay: 1s;">✦</div>
+    <div class="star-twinkle" style="top: 68%; left: 95%; animation-delay: 2s;">✧</div>
+    <div class="star-twinkle" style="top: 78%; left: 55%; animation-delay: 3s;">⋆</div>
+    <div class="star-twinkle" style="top: 88%; left: 25%; animation-delay: 4s;">★</div>
+  </div>
+</div>
+<!-----------------End of Background-------------------->
+
+
+
+<!-----------------Header-------------------->
+<!-- Include this script tag or install `@tailwindplus/elements` via npm: -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script> -->
+<div class="bg-transparent">
+  <header id="main-header" class="absolute inset-x-0 top-0 z-50 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
+    <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
+      <div class="flex lg:flex-1">
+        <a href="#" class="-m-1.5 p-1.5 hover:scale-110 transition-transform duration-300">
+          <span class="sr-only">HappyMath</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm animate-pulse">🧮</div>
+            <span class="text-white font-bold text-lg">HappyMath</span>
+          </div>
+        </a>
+      </div>
+      <div class="flex lg:hidden">
+        <button type="button" command="show-modal" commandfor="mobile-menu" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white hover:bg-white/20 transition-colors duration-300">
+          <span class="sr-only">Open main menu</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+            <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="#home" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Home</a>
+        <a href="#features" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Quizzes</a>
+        <a href="#teams" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Our Team</a>
+        <a href="#contact" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Contact</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="#" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 bg-gradient-to-r from-pink-500 to-purple-600 px-4 py-2 rounded-full hover:scale-105 transform transition-all duration-300">Get Started <span aria-hidden="true">✨</span></a>
+      </div>
+    </nav>
+    <el-dialog>
+      <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+        <div tabindex="0" class="fixed inset-0 focus:outline-none">
+          <el-dialog-panel class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-purple-900/95 backdrop-blur-md p-6 sm:max-w-sm border-l border-white/20">
+            <div class="flex items-center justify-between">
+              <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" class="h-8 w-auto dark:hidden" />
+                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="" class="h-8 w-auto not-dark:hidden" />
+              </a>
+              <button type="button" command="close" commandfor="mobile-menu" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-gray-200">
+                <span class="sr-only">Close menu</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6">
+                  <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-6 flow-root">
+              <div class="-my-6 divide-y divide-gray-500/10 dark:divide-white/10">
+                <div class="space-y-2 py-6">
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-purple-500/30 transition-colors duration-300">Product</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-purple-500/30 transition-colors duration-300">Features</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-purple-500/30 transition-colors duration-300">Marketplace</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-purple-500/30 transition-colors duration-300">Company</a>
+                </div>
+                <div class="py-6">
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-purple-500/30 transition-colors duration-300">Log in</a>
+                </div>
+              </div>
+            </div>
+          </el-dialog-panel>
+        </div>
+      </dialog>
+    </el-dialog>
+  </header>
+
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div aria-hidden="true" class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+      <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"></div>
+    </div>
+    <div class="mx-auto max-w-4xl py-20 sm:py-32 lg:py-40" id="home">
+      <div class="hidden sm:mb-8 sm:flex sm:justify-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="relative rounded-full px-4 py-2 text-sm/6 text-white bg-purple-500/20 backdrop-blur-sm border border-purple-300/30 hover:bg-purple-500/30 transition-all duration-300 animate-bounce-slow">
+          🎉 Making math fun for everyone! <a href="#features" class="font-semibold text-yellow-300 nav-link"><span aria-hidden="true" class="absolute inset-0"></span>Discover more <span aria-hidden="true">🚀</span></a>
+        </div>
+      </div>
+      <div class="text-center">
+        <h1 class="text-5xl font-bold tracking-tight text-balance text-white sm:text-7xl drop-shadow-lg" data-aos="zoom-in" data-aos-duration="1000">
+          Welcome to <span class="text-gradient bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 bg-clip-text text-transparent animate-text-shimmer">HappyMath</span> ✨
+        </h1>
+        <p class="mt-8 text-lg font-medium text-pretty text-white/90 sm:text-xl/8 drop-shadow-md" data-aos="fade-up" data-aos-delay="300">
+          Where learning mathematics becomes an exciting adventure! 🧮 Join thousands of students who are discovering the joy of numbers through our interactive and engaging platform.
+        </p>
+        <div class="mt-10 flex items-center justify-center gap-x-6" data-aos="fade-up" data-aos-delay="500">
+          <a href="#features" class="group relative overflow-hidden rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-8 py-4 text-lg font-bold text-white shadow-2xl hover:shadow-yellow-400/25 transition-all duration-300 transform hover:scale-110 nav-link">
+            <span class="relative z-10">Start Learning! 🎯</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+          <a href="#teams" class="text-lg font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link group">
+            Meet Our Team <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">👥</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div aria-hidden="true" class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+      <div style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)" class="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"></div>
+    </div>
+  </div>
+</div>
+
+<!-----------------End of Header-------------------->
+
+
+
+
+
+
+<!-------------Start of Quiz Cards-------------------->
+
+<section class="text-gray-200 body-font relative" id="features">
+
+  <!-- Decorations for quiz cards section -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="math-symbol absolute" style="top: 5%; left: 8%; animation-delay: 0s;">🎮</div>
+    <div class="math-symbol absolute" style="top: 15%; left: 92%; animation-delay: 1s;">📊</div>
+    <div class="math-symbol absolute" style="top: 75%; left: 5%; animation-delay: 2s;">🎯</div>
+    <div class="math-symbol absolute" style="top: 85%; left: 95%; animation-delay: 3s;">🏅</div>
+    <div class="star-twinkle absolute" style="top: 25%; left: 85%; animation-delay: 0.5s;">✦</div>
+    <div class="star-twinkle absolute" style="top: 45%; left: 10%; animation-delay: 1.5s;">⋆</div>
+    <div class="star-twinkle absolute" style="top: 65%; left: 90%; animation-delay: 2.5s;">✧</div>
+    <div class="star-twinkle absolute" style="top: 95%; left: 15%; animation-delay: 3.5s;">★</div>
+  </div>
+  <div class="container px-5 py-24 mx-auto">
+    <div class="text-center mb-20" data-aos="fade-up">
+      <h1 class="sm:text-4xl text-3xl font-bold title-font text-white mb-4">
+        🌟 Quizzes To Make Learning Fun! 🌟
+      </h1>
+      <p class="text-lg leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-white/80">
+        Discover how our innovative approach transforms mathematics from a challenge into an exciting journey of discovery and growth! 🚀
+      </p>
+      <div class="flex mt-8 justify-center" data-aos="zoom-in" data-aos-delay="200">
+        <div class="w-24 h-2 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 inline-flex animate-pulse"></div>
+      </div>
+    </div>
+    <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+      <div class="p-4 md:w-1/3 flex flex-col text-center items-center feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-24 h-24 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 text-white mb-6 flex-shrink-0 hover:scale-110 transition-transform duration-300 shadow-lg">
+          <div class="text-3xl">🎮</div>
+        </div>
+        <div class="flex-grow bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex flex-col">
+          <h2 class="text-white text-xl title-font font-bold mb-3">Addition</h2>
+          <p class="leading-relaxed text-base text-white/80 flex-grow mb-6">Master addition skills with engaging quizzes! Practice adding numbers step-by-step, solve fun problems, and build confidence in basic math operations.</p>
+          <a href="addition.html" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-4 px-8 rounded-full hover:from-yellow-500 hover:to-orange-600 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl group inline-block text-center no-underline">
+            <span class="flex items-center justify-center space-x-2">
+              <span class="text-xl">🎮</span>
+              <span>Play Addition!</span>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3 flex flex-col text-center items-center feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-24 h-24 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white mb-6 flex-shrink-0 hover:scale-110 transition-transform duration-300 shadow-lg">
+          <div class="text-3xl">📊</div>
+        </div>
+        <div class="flex-grow bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex flex-col">
+          <h2 class="text-white text-xl title-font font-bold mb-3">Subtraction</h2>
+          <p class="leading-relaxed text-base text-white/80 flex-grow mb-6">Excel at subtraction with interactive quizzes! Practice taking away numbers, solve challenging problems, and strengthen your mathematical foundations.</p>
+          <a href="subtraction.html" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:from-pink-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl group inline-block text-center no-underline">
+            <span class="flex items-center justify-center space-x-2">
+              <span class="text-xl">📊</span>
+              <span>Play Subtraction!</span>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/3 flex flex-col text-center items-center feature-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-24 h-24 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-white mb-6 flex-shrink-0 hover:scale-110 transition-transform duration-300 shadow-lg">
+          <div class="text-3xl">👥</div>
+        </div>
+        <div class="flex-grow bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex flex-col">
+          <h2 class="text-white text-xl title-font font-bold mb-3">Mixed Questions</h2>
+          <p class="leading-relaxed text-base text-white/80 flex-grow mb-6">Challenge yourself with mixed math quizzes! Combine addition, subtraction, and more to test your comprehensive math abilities and skills.</p>
+          <a href="mixed.html" class="bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold py-4 px-8 rounded-full hover:from-green-500 hover:to-blue-600 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl group inline-block text-center no-underline">
+            <span class="flex items-center justify-center space-x-2">
+              <span class="text-xl">🎯</span>
+              <span>Play Mixed Quiz!</span>
+              <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-16" data-aos="fade-up" data-aos-delay="400">
+      <div class="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-2xl p-9 max-w-2xl mx-auto border border-purple-300/20">
+        <h3 class="text-2xl font-bold text-white mb-4">🎯 Why Choose HappyMath?</h3>
+        <div class="grid grid-cols-3 gap-6 text-center">
+          <div class="text-white">
+            <div class="text-3xl font-bold text-yellow-300">10K+</div>
+            <div class="text-sm text-white/80">Happy Imaginary Students</div>
+          </div>
+          <div class="text-white">
+            <div class="text-3xl font-bold text-pink-300">95%</div>
+            <div class="text-sm text-white/80">Success Rate</div>
+          </div>
+          <div class="text-white">
+            <div class="text-3xl font-bold text-green-300">24/7</div>
+            <div class="text-sm text-white/80">Learning Fun</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-----------------End of Quiz Cards-------------------->
+
+
+
+<!-----------------Our Team Section-------------------->
+<section class="relative" id="teams">
+
+  <!-- Decoration for team section -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="math-symbol absolute" style="top: 10%; left: 5%; animation-delay: 0.5s;">👨‍💻</div>
+    <div class="math-symbol absolute" style="top: 20%; left: 95%; animation-delay: 1.5s;">�‍🎨</div>
+    <div class="math-symbol absolute" style="top: 60%; left: 3%; animation-delay: 2.5s;">�</div>
+    <div class="math-symbol absolute" style="top: 80%; left: 97%; animation-delay: 3.5s;">�</div>
+    <div class="star-twinkle absolute" style="top: 15%; left: 85%; animation-delay: 1s;">✦</div>
+    <div class="star-twinkle absolute" style="top: 35%; left: 10%; animation-delay: 2s;">⋆</div>
+    <div class="star-twinkle absolute" style="top: 70%; left: 90%; animation-delay: 3s;">✧</div>
+    <div class="star-twinkle absolute" style="top: 90%; left: 15%; animation-delay: 4s;">★</div>
+  </div>
+
+
+  <div class="py-16 px-4 mx-auto max-w-screen-xl text-center lg:py-24 lg:px-6">
+      <div class="mx-auto mb-12 max-w-screen-sm lg:mb-20" data-aos="fade-up">
+          <h2 class="mb-6 text-5xl tracking-tight font-extrabold text-white">
+            🌟 Meet Our Amazing Team! 🌟
+          </h2>
+          <p class="font-light text-white/80 sm:text-xl text-lg">
+            Get to know the passionate educators and developers who make learning mathematics an extraordinary experience! 👨‍🏫👩‍💻
+          </p>
+          <div class="flex mt-8 justify-center" data-aos="zoom-in" data-aos-delay="200">
+            <div class="w-24 h-2 rounded-full bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 inline-flex animate-pulse"></div>
+          </div>
+      </div> 
+      <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 items-start">
+
+        <!-- Mashiro's Card -->
+        <div class="text-center text-white group team-card h-full flex flex-col" data-aos="flip-left">
+            <div class="relative mb-6">
+              <img class="mx-auto w-40 h-40 rounded-full border-4 border-gradient-to-r from-yellow-400 to-pink-500 shadow-2xl group-hover:scale-110 transition-transform duration-300" src="img/Rin.png" alt="Rin's Avatar">
+              <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-sm animate-bounce">⭐</div>
+            </div>
+
+            <div class="bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex-grow flex flex-col justify-between">
+              <div class="flex-grow">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    <a href="#" class="hover:text-yellow-300 transition-colors duration-300">Muhammad Khairin Irham</a>
+                </h3>
+                <p class="text-yellow-300 font-semibold mb-3">Mashiro ✨</p>
+                <p class="text-white/80 text-sm mb-4">Full-Stack Developer & Math Enthusiast 🧮</p>
+              </div>
+
+              <!-- Social Media Links for Mashiro (Eheh amek x minta izin, sori dow)-->
+              <ul class="flex justify-center mt-4 space-x-4">
+                  <li>
+                      <a href="https://www.instagram.com/khairinirham_ " class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://github.com/KDarknezz" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.tiktok.com/@kdarknezz" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                      </a> 
+                  </li> 
+              </ul>
+              <!-- End Of Social Media Link for Mashiro-->
+            </div>
+        </div>
+        <!-- End Of Mashiro's Card -->
+
+
+        <!-- Maru's Card -->
+        <div class="text-center text-white group team-card h-full flex flex-col" data-aos="flip-left">
+            <div class="relative mb-6">
+              <img class="mx-auto w-40 h-40 rounded-full border-4 border-gradient-to-r from-pink-400 to-purple-500 shadow-2xl group-hover:scale-110 transition-transform duration-300" src="/img/Hirumi.png" alt="Maru's Avatar">
+              <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center text-sm animate-bounce">🎨</div>
+            </div>
+            <div class="bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex-grow flex flex-col justify-between">
+              <div class="flex-grow">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    <a href="#" class="hover:text-yellow-300 transition-colors duration-300">Ahmad Akmal Abdullah</a>
+                </h3>
+                <p class="text-pink-300 font-semibold mb-3">RuumiDev 🎨</p>
+                <p class="text-white/80 text-sm mb-4">UI/UX Designer & Creative Director 🎭</p>
+              </div>
+
+              <!-- Social Media Links for Maru -->
+              <ul class="flex justify-center mt-4 space-x-4">
+                  <li>
+                      <a href="https://www.instagram.com/unsaltedsalt_" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://github.com/RuumiDev" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.tiktok.com/@unsaltedsalt_" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                      </a> 
+                  </li> 
+              </ul>
+              <!-- End Of Social Media Link for Maru-->
+            </div>
+        </div>
+        <!-- End Of Maru's Card -->
+          
+        <!-- Irufan's Card -->
+        <div class="text-center text-white group team-card h-full flex flex-col" data-aos="flip-left">
+            <div class="relative mb-6">
+              <img class="mx-auto w-40 h-40 rounded-full border-4 border-gradient-to-r from-green-400 to-blue-500 shadow-2xl group-hover:scale-110 transition-transform duration-300" src="img/Irufan.png" alt="Irufan's Avatar">
+              <div class="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-sm animate-bounce">🎯</div>
+            </div>
+            <div class="bg-purple-500/10 backdrop-blur-sm rounded-xl p-6 hover:bg-purple-500/15 transition-all duration-300 flex-grow flex flex-col justify-between">
+              <div class="flex-grow">
+                <h3 class="mb-2 text-2xl font-bold tracking-tight text-white">
+                    <a href="#" class="hover:text-yellow-300 transition-colors duration-300">Muhammad Irfan Anuar</a>
+                </h3>
+                <p class="text-green-300 font-semibold mb-3">Guso Picaso 🎯</p>
+                <p class="text-white/80 text-sm mb-4">Project Manager & Strategy Lead 📊</p>
+              </div>
+              <!-- Social Media Links for Irufan -->
+              <ul class="flex justify-center mt-4 space-x-4">
+                  <li>
+                      <a href="https://www.instagram.com/irfan6k" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="http://github.com/Gusofan" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="https://www.tiktok.com/@fanguso" class="text-purple-300 hover:text-purple-400 transform hover:scale-125 transition-all duration-300">
+                          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                      </a> 
+                  </li> 
+              </ul>
+              <!-- End Of Social Media Link for Irufan-->
+          </div>
+        <!-- End Of Irufan's Card -->
+      </div>  
+  </div>
+</section>
+<!-----------------End of Our Team-------------------->
+
+
+
+<!-----------------Footer-------------------->
+<footer class="text-white bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm body-font border-t border-white/20" id="contact" data-aos="fade-up">
+  <div class="container px-5 py-12 mx-auto">
+    <div class="flex flex-wrap md:text-left text-center">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">📚 HAPPYMATH</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a href="#home" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Home</a></li>
+          <li><a href="#features" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Quizzes</a></li>
+          <li><a href="#teams" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Our Team</a></li>
+          <li><a href="#contact" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Contact</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">🎮 LEARN WITH FUN</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Interactive Games</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Progress Tracking</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Community</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Achievements</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">📞 CONTACT US</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">📧 hello@happymath.com</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">📱 +60 12-345 6789</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">🏢 Kuala Lumpur, Malaysia</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">🌟 FOLLOW US</h2>
+        <div class="flex justify-center md:justify-start space-x-4 mb-6">
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+            </svg>
+          </a>
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+        </div>
+        <p class="text-white/60 text-sm">Making math fun for everyone! 🎉</p>
+      </div>
+    </div>
+  </div>
+  <div class="backdrop-blur-sm">
+    <div class="container mx-auto py-6 px-5 flex flex-wrap flex-col sm:flex-row">
+      <div class="flex title-font font-medium items-center md:justify-start justify-center text-white mb-4 sm:mb-0">
+        <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold animate-pulse">🧮</div>
+        <span class="ml-3 text-xl font-bold">HappyMath</span>
+      </div>
+      <p class="text-sm text-white/60 sm:ml-6 sm:mt-0 mt-4">© 2025 HappyMath —
+        <span class="text-white/80 ml-1">KPTM Ipoh, Malaysia</span>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <span class="text-white/60">For Educational purpose only</span>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-----------------End of Footer-------------------->
+
+
+
+<!-----------------Delete Confirmation Popup ( Incase kalau guna )-------------------->
+<!-- Modal toggle
+<div class="flex justify-center m-5">
+    <button id="deleteButton" data-modal-target="deleteModal" data-modal-toggle="deleteModal" class="block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button">
+    Show delete confirmation
+    </button>
+</div> -->
+
+<!-- Main modal -->
+<!-- <div id="deleteModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto"> -->
+        <!-- Modal content -->
+        <!-- <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <button type="button" class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteModal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+            <p class="mb-4 text-gray-500 dark:text-gray-300">Are you sure you want to delete this item?</p>
+            <div class="flex justify-center items-center space-x-4">
+                <button data-modal-toggle="deleteModal" type="button" class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                    No, cancel
+                </button>
+                <button type="submit" class="py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    Yes, I'm sure
+                </button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-----------------End of Delete Confirmation Popup-------------------->
+
+
+<!-- Floating back to top button -->
+<button id="back-to-top" class="fixed bottom-6 right-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-2xl opacity-90 transition-all duration-300 hover:scale-110 hover:opacity-100 z-50 hover:shadow-pink-500/25">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+  </svg>
+</button>
+
+<script>
+  // Initialize AOS animations
+  AOS.init({
+    duration: 1200,
+    once: false, // Allow animations to repeat
+    offset: 100,
+    easing: 'ease-out-cubic',
+    mirror: true, // Animate out while scrolling past
+    anchorPlacement: 'top-bottom'
+  });
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId.startsWith('#')) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+
+  // Back to top button functionality
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.style.opacity = '1';
+      backToTopButton.style.transform = 'translateY(0)';
+    } else {
+      backToTopButton.style.opacity = '0';
+      backToTopButton.style.transform = 'translateY(16px)';
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+
+
+  // Add floating effect to feature cards
+  document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-10px)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+  });
+
+  // Add floating effect to team cards
+  document.querySelectorAll('.team-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+
+  // Add parallax effect to background circles
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const parallax = document.querySelector('.area');
+    const speed = scrolled * 0.5;
+    parallax.style.transform = `translateY(${speed}px)`;
+  });
+
+  // Add sparkle effect on button hover
+  document.querySelectorAll('button, .btn').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      // Create sparkle elements
+      for (let i = 0; i < 3; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.innerHTML = '✨';
+        sparkle.style.position = 'absolute';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.fontSize = '12px';
+        sparkle.style.zIndex = '1000';
+        sparkle.style.animation = 'sparkle 1s ease-out forwards';
+        
+        const rect = this.getBoundingClientRect();
+        sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+        sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+        
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1000);
+      }
+    });
+  });
+
+  // Add typing animation effect
+  function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = '';
+    
+    function type() {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      }
+    }
+    type();
+  }
+
+  // Add intersection observer for scroll animations
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        entry.target.classList.add('animate-in');
+      } else {
+        // Reset animation when scrolling out of view
+        entry.target.style.opacity = '0.3';
+        entry.target.style.transform = 'translateY(20px)';
+        entry.target.classList.remove('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all sections for scroll animations
+  document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0.3';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  @keyframes sparkle {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1) rotate(180deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+</body>
+</html>

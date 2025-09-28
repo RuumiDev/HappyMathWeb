@@ -1,0 +1,571 @@
+/* Background full page coverage !! */
+.area {
+  background: linear-gradient(135deg, #667eea, #764ba2, #8c7ae6) !important;
+  background-size: 400% 400% !important;
+  width: 100vw !important;
+  height: 200vh !important;
+  min-height: 200vh !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  z-index: -10 !important;
+  animation: backgroundShift 15s ease-in-out infinite;
+}
+
+/* Extend background beyond any content, bagi ada parallex effect */
+.area::before {
+  content: '';
+  position: absolute;
+  top: -200vh;
+  left: -50vw;
+  right: -50vw;
+  bottom: -200vh;
+  width: 200vw;
+  height: 500vh;
+  background: linear-gradient(135deg, #667eea, #764ba2, #8c7ae6);
+  background-size: 400% 400%;
+  animation: backgroundShift 15s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Stroke-draw effect */
+.loader-text {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 3s ease forwards, glow 2s ease-in-out infinite alternate 3s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Glow animation after drawing */
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px #973BED) drop-shadow(0 0 10px #007CFF);
+  }
+  to {
+    filter: drop-shadow(0 0 15px #007CFF) drop-shadow(0 0 30px #973BED);
+  }
+}
+
+@keyframes backgroundShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Container untuk circles */
+.circles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Common styles for circles */
+.circle {
+  position: absolute;
+  display: block;
+  list-style: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 182, 193, 0.4), rgba(138, 43, 226, 0.3));
+  bottom: -200px;
+  animation: animate 30s linear infinite;
+  border-radius: 50%;
+  backdrop-filter: blur(8px);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 12px 40px rgba(255, 255, 255, 0.3),
+    0 8px 24px rgba(255, 182, 193, 0.3),
+    0 4px 16px rgba(138, 43, 226, 0.3),
+    inset 0 2px 8px rgba(255, 255, 255, 0.3);
+  z-index: 3;
+  opacity: 1;
+}
+
+/*Using animate transformation keyframe rather than floating */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-10px) rotate(270deg);
+  }
+}
+
+/* Circle sizes and positions */
+.circle1 {
+  width: 80px;
+  height: 80px;
+  left: 25%;
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+
+.circle2 {
+  width: 35px;
+  height: 35px;
+  left: 10%;
+  animation-delay: -12s;
+  animation-duration: 20s;
+}
+
+.circle3 {
+  width: 28px;
+  height: 28px;
+  left: 70%;
+  animation-delay: -8s;
+  animation-duration: 22s;
+}
+
+.circle4 {
+  width: 60px;
+  height: 60px;
+  left: 40%;
+  animation-delay: -20s;
+  animation-duration: 28s;
+}
+
+.circle5 {
+  width: 42px;
+  height: 42px;
+  left: 65%;
+  animation-delay: -15s;
+  animation-duration: 21s;
+}
+
+.circle6 {
+  width: 110px;
+  height: 110px;
+  left: 75%;
+  animation-delay: -25s;
+  animation-duration: 32s;
+}
+
+.circle7 {
+  width: 120px;
+  height: 120px;
+  left: 35%;
+  animation-delay: -30s;
+  animation-duration: 35s;
+}
+
+.circle8 {
+  width: 38px;
+  height: 38px;
+  left: 50%;
+  animation-delay: -18s;
+  animation-duration: 24s;
+}
+
+.circle9 {
+  width: 32px;
+  height: 32px;
+  left: 20%;
+  animation-delay: -9s;
+  animation-duration: 18s;
+}
+
+.circle10 {
+  width: 95px;
+  height: 95px;
+  left: 85%;
+  animation-delay: -33s;
+  animation-duration: 38s;
+}
+
+.circle11 {
+  width: 45px;
+  height: 45px;
+  left: 5%;
+  animation-delay: -22s;
+  animation-duration: 26s;
+}
+
+.circle12 {
+  width: 75px;
+  height: 75px;
+  left: 90%;
+  animation-delay: -26s;
+  animation-duration: 29s;
+}
+
+/* Bubble Animation, floating from bottom to the top*/
+@keyframes animate {
+  0% {
+    transform: translateY(120vh) rotate(0deg) scale(0.3);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.6;
+    transform: translateY(100vh) rotate(36deg) scale(0.6);
+  }
+  15% {
+    opacity: 0.9;
+    transform: translateY(80vh) rotate(90deg) scale(0.8);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(60vh) rotate(180deg) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-10vh) rotate(540deg) scale(1.1);
+  }
+  88% {
+    opacity: 0.9;
+    transform: translateY(-25vh) rotate(630deg) scale(1);
+  }
+  96% {
+    opacity: 0.6;
+    transform: translateY(-40vh) rotate(690deg) scale(0.8);
+  }
+  100% {
+    transform: translateY(-50vh) rotate(720deg) scale(0.4);
+    opacity: 0;
+  }
+}
+
+/* Stars background */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 300vh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stars::before,
+.stars::after {
+  content: '✨';
+  position: absolute;
+  font-size: 12px;
+  animation: twinkle 3s infinite;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.stars::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.stars::after {
+  top: 60%;
+  right: 20%;
+  animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Text gradient animation */
+.text-gradient {
+  background-size: 200% 200%;
+  animation: textShimmer 3s ease-in-out infinite;
+}
+
+@keyframes textShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Custom bounce animation */
+.animate-bounce-slow {
+  animation: bounce-slow 3s infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(-5px);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Hover effects for cards */
+.feature-card, .team-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature-card:hover, .team-card:hover {
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #764ba2, #f093fb);
+}
+
+/* Loading animation for images */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+  opacity: 0;
+}
+
+/* Enhanced backdrop blur effects */
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-7xl {
+    font-size: 3.5rem;
+  }
+}
+
+/* Custom gradient borders */
+.border-gradient {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #667eea, #764ba2, #f093fb) 1;
+}
+
+/* Ensure no white backgrounds appear */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Hide any potential white elements */
+.bg-white {
+  background-color: transparent !important;
+}
+
+/* Ensure header transparency */
+#main-header {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: none !important;
+  transition: all 0.3s ease;
+}
+
+/* Header when scrolled */
+#main-header.scrolled {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Smooth animations for all elements */
+.animate-in {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced scroll animations  */
+.scroll-animate {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate:not(.visible) {
+  opacity: 0.3;
+  transform: translateY(20px);
+}
+
+/* Star and mathematical symbol decorations */
+.math-symbol {
+  position: fixed;
+  font-size: 1.5rem;
+  z-index: 2;
+  animation: floatAndTwinkle 8s ease-in-out infinite;
+  color: #fff;
+  opacity: 0.4;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+.star-twinkle {
+  position: fixed;
+  font-size: 1rem;
+  z-index: 2;
+  animation: twinkle 3s ease-in-out infinite;
+  color: #fff;
+  opacity: 0.3;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+@keyframes floatAndTwinkle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-15px) rotate(90deg) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.2);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(-15px) rotate(270deg) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/* Comprehensive white background elimination */
+html {
+  background: linear-gradient(135deg, #667eea, #764ba2, #8c7ae6) !important;
+  background-size: 400% 400% !important;
+  animation: backgroundShift 15s ease-in-out infinite !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2, #8c7ae6) !important;
+  background-size: 400% 400% !important;
+  background-attachment: fixed !important;
+  animation: backgroundShift 15s ease-in-out infinite !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+}
+
+/* Eliminate any default white backgrounds */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root, main, .container {
+  background-color: transparent !important;
+}
+
+/* Override any remaining white backgrounds */
+.bg-white,
+[style*="background: white"],
+[style*="background-color: white"],
+[style*="background: #fff"],
+[style*="background-color: #fff"],
+[style*="background: #ffffff"],
+[style*="background-color: #ffffff"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Decoration layers for different sections */
+.decoration-layer {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Prevent layout shifts */
+.no-flash {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

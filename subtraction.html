@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subtraction Quiz - HappyMath</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body class="overflow-x-hidden">
+
+<!-----------------Background-------------------->
+<div class="area w-full h-full fixed inset-0 bg-gradient-to-br from-[#667eea] via-[#764ba2] to-[#f093fb] -z-10" style="min-height: 100vh; min-height: 100dvh;">
+  <!-- Animated background circles with immediate visibility -->
+  <div class="circle absolute w-20 h-20 rounded-full bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm" style="left: 10%; animation: animate 20s linear infinite; animation-delay: -5s;"></div>
+  <div class="circle absolute w-16 h-16 rounded-full bg-gradient-to-r from-yellow-300/20 to-orange-300/10 backdrop-blur-sm" style="left: 20%; animation: animate 25s linear infinite; animation-delay: -8s;"></div>
+  <div class="circle absolute w-24 h-24 rounded-full bg-gradient-to-r from-pink-300/15 to-purple-300/10 backdrop-blur-sm" style="left: 25%; animation: animate 18s linear infinite; animation-delay: -12s;"></div>
+  <div class="circle absolute w-32 h-32 rounded-full bg-gradient-to-r from-blue-300/10 to-cyan-300/15 backdrop-blur-sm" style="left: 40%; animation: animate 22s linear infinite; animation-delay: -15s;"></div>
+  <div class="circle absolute w-28 h-28 rounded-full bg-gradient-to-r from-green-300/12 to-emerald-300/8 backdrop-blur-sm" style="left: 70%; animation: animate 30s linear infinite; animation-delay: -20s;"></div>
+  <div class="circle absolute w-18 h-18 rounded-full bg-gradient-to-r from-red-300/15 to-pink-300/12 backdrop-blur-sm" style="left: 90%; animation: animate 35s linear infinite; animation-delay: -25s;"></div>
+  <div class="circle absolute w-22 h-22 rounded-full bg-gradient-to-r from-indigo-300/10 to-purple-300/15 backdrop-blur-sm" style="left: 65%; animation: animate 28s linear infinite; animation-delay: -30s;"></div>
+  <div class="circle absolute w-36 h-36 rounded-full bg-gradient-to-r from-teal-300/8 to-blue-300/12 backdrop-blur-sm" style="left: 50%; animation: animate 40s linear infinite; animation-delay: -33s;"></div>
+  <div class="circle absolute w-14 h-14 rounded-full bg-gradient-to-r from-orange-300/18 to-red-300/10 backdrop-blur-sm" style="left: 80%; animation: animate 26s linear infinite; animation-delay: -18s;"></div>
+  <div class="circle absolute w-30 h-30 rounded-full bg-gradient-to-r from-violet-300/12 to-pink-300/15 backdrop-blur-sm" style="left: 15%; animation: animate 32s linear infinite; animation-delay: -22s;"></div>
+  <div class="circle absolute w-26 h-26 rounded-full bg-gradient-to-r from-lime-300/10 to-green-300/12 backdrop-blur-sm" style="left: 35%; animation: animate 24s linear infinite; animation-delay: -28s;"></div>
+  <div class="circle absolute w-20 h-20 rounded-full bg-gradient-to-r from-sky-300/15 to-indigo-300/8 backdrop-blur-sm" style="left: 5%; animation: animate 38s linear infinite; animation-delay: -35s;"></div>
+</div>
+<!-----------------End of Background-------------------->
+
+<!-----------------Header-------------------->
+<div class="bg-transparent">
+  <header id="main-header" class="absolute inset-x-0 top-0 z-50 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">
+        <a href="index.html" class="-m-1.5 p-1.5 flex items-center space-x-2 group">
+          <span class="sr-only">HappyMath</span>
+          <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300 animate-pulse">
+            🧮
+          </div>
+          <span class="text-2xl font-bold text-white group-hover:text-yellow-300 transition-colors duration-300">HappyMath</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="index.html#home" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Home</a>
+        <a href="index.html#features" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Quizzes</a>
+        <a href="index.html#teams" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Our Team</a>
+        <a href="index.html#contact" class="text-sm/6 font-semibold text-white hover:text-yellow-300 transition-colors duration-300 nav-link">Contact</a>
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+        <a href="index.html" class="group relative overflow-hidden rounded-full bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 text-sm font-bold text-white shadow-2xl hover:shadow-pink-500/25 transition-all duration-300 transform hover:scale-105">
+          <span class="relative z-10">Back to Home ✨</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </a>
+      </div>
+    </nav>
+  </header>
+</div>
+<!-----------------End of Header-------------------->
+
+<!-----------------Subtraction Quiz Section-------------------->
+<section class="relative min-h-screen pt-24 pb-16" id="subtraction-quiz">
+  <!-- Decorations -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="math-symbol absolute" style="top: 10%; left: 8%; animation-delay: 0s;">➖</div>
+    <div class="math-symbol absolute" style="top: 15%; left: 92%; animation-delay: 1s;">🔢</div>
+    <div class="math-symbol absolute" style="top: 75%; left: 5%; animation-delay: 2s;">📉</div>
+    <div class="math-symbol absolute" style="top: 85%; left: 95%; animation-delay: 3s;">🎯</div>
+    <div class="star-twinkle absolute" style="top: 25%; left: 85%; animation-delay: 0.5s;">✦</div>
+    <div class="star-twinkle absolute" style="top: 45%; left: 10%; animation-delay: 1.5s;">⋆</div>
+    <div class="star-twinkle absolute" style="top: 65%; left: 90%; animation-delay: 2.5s;">✧</div>
+    <div class="star-twinkle absolute" style="top: 95%; left: 15%; animation-delay: 3.5s;">★</div>
+  </div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <!-- Progress Bar -->
+    <div class="max-w-4xl mx-auto mb-8" data-aos="fade-down">
+      <div class="bg-white/20 backdrop-blur-sm rounded-full h-4 mb-4">
+        <div id="progress-bar" class="bg-gradient-to-r from-red-400 to-pink-500 h-4 rounded-full transition-all duration-500" style="width: 10%;"></div>
+      </div>
+      <div class="flex justify-between text-white/80 text-sm">
+        <span>Question <span id="current-question">1</span> of <span id="total-questions">10</span></span>
+        <span id="timer">30s</span>
+      </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="max-w-4xl mx-auto">
+      <!-- Question Card -->
+      <div class="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-3xl p-8 mb-8 border border-white/20 shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+        <div class="text-center">
+          <h2 id="question-text" class="text-4xl font-bold text-white mb-6">
+            What is 9 - 4?
+          </h2>
+          <p class="text-white/70 text-lg">Choose the correct answer</p>
+        </div>
+      </div>
+
+      <!-- Answer Options -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <!-- Option A -->
+        <button class="answer-option bg-gradient-to-r from-red-500/80 to-red-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-red-300/30 hover:border-red-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="A" data-aos="fade-up" data-aos-delay="300">
+          <span class="block text-lg mb-2">A</span>
+          <span id="option-a" class="text-2xl">4</span>
+        </button>
+
+        <!-- Option B -->
+        <button class="answer-option bg-gradient-to-r from-blue-500/80 to-blue-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-blue-300/30 hover:border-blue-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="B" data-aos="fade-up" data-aos-delay="400">
+          <span class="block text-lg mb-2">B</span>
+          <span id="option-b" class="text-2xl">5</span>
+        </button>
+
+        <!-- Option C -->
+        <button class="answer-option bg-gradient-to-r from-green-500/80 to-green-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-green-300/30 hover:border-green-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="C" data-aos="fade-up" data-aos-delay="500">
+          <span class="block text-lg mb-2">C</span>
+          <span id="option-c" class="text-2xl">6</span>
+        </button>
+
+        <!-- Option D -->
+        <button class="answer-option bg-gradient-to-r from-yellow-500/80 to-orange-500/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-yellow-300/30 hover:border-yellow-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="D" data-aos="fade-up" data-aos-delay="600">
+          <span class="block text-lg mb-2">D</span>
+          <span id="option-d" class="text-2xl">3</span>
+        </button>
+      </div>
+
+      <!-- Quiz Controls -->
+      <div class="text-center" data-aos="fade-up" data-aos-delay="700">
+        <button id="next-question" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-12 rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+          Next Question →
+        </button>
+        
+        <div class="mt-6">
+          <a href="index.html#features" class="text-white/60 hover:text-white transition-colors duration-300">
+            ← Back to Quiz Selection
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-----------------End of Subtraction Quiz Section-------------------->
+
+<!-----------------Footer-------------------->
+<footer class="text-white bg-gradient-to-r from-purple-900/80 to-blue-900/80 backdrop-blur-sm body-font border-t border-white/20" id="contact" data-aos="fade-up">
+  <div class="container px-5 py-12 mx-auto">
+    <div class="flex flex-wrap md:text-left text-center">
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">📚 HAPPYMATH</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a href="index.html#home" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Home</a></li>
+          <li><a href="index.html#features" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Quizzes</a></li>
+          <li><a href="index.html#teams" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Our Team</a></li>
+          <li><a href="index.html#contact" class="text-white/80 hover:text-yellow-300 transition-colors duration-300 nav-link">Contact</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">🎮 LEARN WITH FUN</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Interactive Games</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Progress Tracking</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Community</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">Achievements</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">📞 CONTACT US</h2>
+        <nav class="list-none mb-10 space-y-2">
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">📧 hello@happymath.com</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">📱 +60 12-345 6789</a></li>
+          <li><a class="text-white/80 hover:text-yellow-300 transition-colors duration-300">🏢 Kuala Lumpur, Malaysia</a></li>
+        </nav>
+      </div>
+      <div class="lg:w-1/4 md:w-1/2 w-full px-4 mb-8">
+        <h2 class="title-font font-bold text-white tracking-widest text-lg mb-4">🌟 FOLLOW US</h2>
+        <div class="flex justify-center md:justify-start space-x-4 mb-6">
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+            </svg>
+          </a>
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+            </svg>
+          </a>
+          <a class="text-white hover:text-yellow-300 transform hover:scale-125 transition-all duration-300">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+            </svg>
+          </a>
+        </div>
+        <p class="text-white/60 text-sm">Making math fun for everyone! 🎉</p>
+      </div>
+    </div>
+  </div>
+  <div class="backdrop-blur-sm">
+    <div class="container mx-auto py-6 px-5 flex flex-wrap flex-col sm:flex-row">
+      <div class="flex title-font font-medium items-center md:justify-start justify-center text-white mb-4 sm:mb-0">
+        <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold animate-pulse">🧮</div>
+        <span class="ml-3 text-xl font-bold">HappyMath</span>
+      </div>
+      <p class="text-sm text-white/60 sm:ml-6 sm:mt-0 mt-4">© 2025 HappyMath —
+        <span class="text-white/80 ml-1">KPTM Ipoh, Malaysia</span>
+      </p>
+      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+        <span class="text-white/60">For Educational purpose only</span>
+      </span>
+    </div>
+  </div>
+</footer>
+<!-----------------End of Footer-------------------->
+
+<!-- Floating back to top button -->
+<button id="back-to-top" class="fixed bottom-6 right-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-2xl opacity-90 transition-all duration-300 hover:scale-110 hover:opacity-100 z-50 hover:shadow-pink-500/25">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+  </svg>
+</button>
+
+<script>
+  // Initialize AOS animations
+  AOS.init({
+    duration: 1200,
+    once: false,
+    offset: 100,
+    easing: 'ease-out-cubic',
+    mirror: true,
+    anchorPlacement: 'top-bottom'
+  });
+
+  // Back to top button functionality
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.style.opacity = '1';
+      backToTopButton.style.transform = 'translateY(0)';
+    } else {
+      backToTopButton.style.opacity = '0.9';
+      backToTopButton.style.transform = 'translateY(0)';
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
+</body>
+</html>
