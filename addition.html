@@ -73,67 +73,43 @@
     <div class="star-twinkle absolute" style="top: 95%; left: 15%; animation-delay: 3.5s;">★</div>
   </div>
 
-  <div class="container mx-auto px-6 relative z-10">
-    <!-- Progress Bar -->
-    <div class="max-w-4xl mx-auto mb-8" data-aos="fade-down">
-      <div class="bg-white/20 backdrop-blur-sm rounded-full h-4 mb-4">
-        <div id="progress-bar" class="bg-gradient-to-r from-yellow-400 to-orange-500 h-4 rounded-full transition-all duration-500" style="width: 10%;"></div>
-      </div>
+  <div class="container mx-auto px-6 relative z-10" data-quiz="addition">
+    <!-- header info (total questions) -->
+    <div class="max-w-4xl mx-auto mb-6">
       <div class="flex justify-between text-white/80 text-sm">
-        <span>Question <span id="current-question">1</span> of <span id="total-questions">10</span></span>
-        <span id="timer">30s</span>
+        <span>Question <span id="current-question">1</span> of <span id="total-questions">6</span></span>
+        <span id="timer">--</span>
       </div>
     </div>
 
     <!-- Quiz Container -->
     <div class="max-w-4xl mx-auto">
-      <!-- Question Card -->
-      <div class="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-3xl p-8 mb-8 border border-white/20 shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
-        <div class="text-center">
-          <h2 id="question-text" class="text-4xl font-bold text-white mb-6">
-            What is 5 + 3?
-          </h2>
-          <p class="text-white/70 text-lg">Choose the correct answer</p>
+      <!-- NOTE: removed single-question visual and header — this page now shows all 6 question cards rendered below -->
+
+      <!-- Questions container: all 6 questions will be rendered here -->
+      <div id="questions-container" class="grid grid-cols-1 gap-8 mb-6" aria-live="polite">
+        <!-- dom.js will render six question cards here -->
+      </div>
+
+      <!-- Submit / Next controls -->
+      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+        <button id="submit-answer" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-all duration-200 shadow-xl">Submit Answer</button>
+        <button id="next-question" class="ml-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-8 rounded-full hover:scale-105 transition-all duration-200 shadow-xl hidden">Next Question →</button>
+        <div class="mt-6">
+          <a href="index.html#features" class="text-white/60 hover:text-white transition-colors duration-300">← Back to Quiz Selection</a>
         </div>
       </div>
 
-      <!-- Answer Options -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <!-- Option A -->
-        <button class="answer-option bg-gradient-to-r from-red-500/80 to-red-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-red-300/30 hover:border-red-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="A" data-aos="fade-up" data-aos-delay="300">
-          <span class="block text-lg mb-2">A</span>
-          <span id="option-a" class="text-2xl">6</span>
-        </button>
-
-        <!-- Option B -->
-        <button class="answer-option bg-gradient-to-r from-blue-500/80 to-blue-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-blue-300/30 hover:border-blue-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="B" data-aos="fade-up" data-aos-delay="400">
-          <span class="block text-lg mb-2">B</span>
-          <span id="option-b" class="text-2xl">8</span>
-        </button>
-
-        <!-- Option C -->
-        <button class="answer-option bg-gradient-to-r from-green-500/80 to-green-600/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-green-300/30 hover:border-green-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="C" data-aos="fade-up" data-aos-delay="500">
-          <span class="block text-lg mb-2">C</span>
-          <span id="option-c" class="text-2xl">7</span>
-        </button>
-
-        <!-- Option D -->
-        <button class="answer-option bg-gradient-to-r from-yellow-500/80 to-orange-500/80 backdrop-blur-sm text-white font-bold py-6 px-8 rounded-2xl border-2 border-yellow-300/30 hover:border-yellow-300/60 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl" data-option="D" data-aos="fade-up" data-aos-delay="600">
-          <span class="block text-lg mb-2">D</span>
-          <span id="option-d" class="text-2xl">9</span>
-        </button>
-      </div>
-
-      <!-- Quiz Controls -->
-      <div class="text-center" data-aos="fade-up" data-aos-delay="700">
-        <button id="next-question" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 px-12 rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-          Next Question →
-        </button>
-        
-        <div class="mt-6">
-          <a href="index.html#features" class="text-white/60 hover:text-white transition-colors duration-300">
-            ← Back to Quiz Selection
-          </a>
+      <!-- Result / progression summary (appears after submit) -->
+      <div id="result-summary" class="mt-8 max-w-2xl mx-auto hidden text-center">
+        <div id="score-bar" class="bg-white/10 rounded-full h-6 overflow-hidden mb-4">
+          <div id="score-fill" class="bg-green-500 h-6 w-0 transition-all duration-500"></div>
+        </div>
+        <div id="score-text" class="text-white/80 mb-4">You got <span id="correct-count">0</span> out of <span id="total-questions-2">0</span></div>
+        <img id="result-sticker" src="/img/stickers/default.png" alt="sticker" class="mx-auto w-32 h-32 object-contain transition-transform duration-500 transform" />
+        <div id="result-message" class="text-white/90 mt-2 text-lg font-semibold"></div>
+        <div class="mt-4">
+          <button id="retake-quiz" class="mt-4 bg-white text-purple-700 font-bold py-2 px-6 rounded-full hover:opacity-90">Retake Quiz</button>
         </div>
       </div>
     </div>
@@ -250,6 +226,11 @@
     });
   });
 </script>
+
+<!-- Quiz scripts (separated) -->
+<script src="/src/js/arrays.js"></script>
+<script src="/src/js/functions.js"></script>
+<script src="/src/js/dom.js"></script>
 
 </body>
 </html>

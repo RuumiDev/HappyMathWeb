@@ -1,0 +1,1 @@
+This is a temporary placeholder used by the agent to trigger directory reads.
