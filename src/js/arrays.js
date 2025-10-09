@@ -26,7 +26,7 @@ const QUIZ_DATA = {
   ],
   mixed: [
   { id: 1, image: '/img/mixed/1+1-1.png', question: '1 + 1 - 0', choices: ['1', '2', '3', '0'], answer: 1 },
-    { id: 2, image: '/img/mixed/1-2+3.png', question: '1 - 2 + 3', choices: ['1', '2', '3', '4'], answer: 2 },
+    { id: 2, image: '/img/mixed/2-1+3.png', question: '2 - 1 + 3', choices: ['1', '2', '3', '4'], answer: 3 },
     { id: 3, image: '/img/mixed/2-2+3.png', question: '2 - 2 + 3', choices: ['2', '3', '4', '1'], answer: 1 },
     { id: 4, image: '/img/mixed/3-1+2.png', question: '3 - 1 + 2', choices: ['3', '4', '2', '5'], answer: 1 },
     { id: 5, image: '/img/mixed/3-2+3.png', question: '3 - 2 + 3', choices: ['3', '4', '5', '2'], answer: 2 },
