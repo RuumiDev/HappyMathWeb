@@ -1,28 +1,29 @@
-/* dom.js
-   Purpose: DOM manipulation and UI interactions only
-   Responsibilities:
-   - initializeQuiz(quizType): load quiz data, shuffle questions, reset UI
-   - renderQuestionCard(): create individual question cards with enhanced visuals
-   - CheckAnswer(): handle UI update    // Use business logic for sticker and message
-    resultSticker.src = QuizFns.getStickerPath(percent);
-    resultMessage.textContent = QuizFns.getResultMessage(percent);
-    
-    // animate sticker pop with enhanced effect
-    resultSticker.classList.remove('scale-90', 'opacity-0');
-    resultSticker.classList.add('scale-110', 'animate-bounce');
-    
-    // Show results with delayed animation after all feedback is shown
-    setTimeout(() => {
-      resultSummary.classList.remove('hidden');
-    }, shuffledQuestions.length * 300 + 800); // Show after all feedback animationssion
-   - TakeQuizAgain(): manage loading screen and quiz reset UI
-   - updateSubmitButtonState(): handle submit button validation UI
-
-   Note: All business logic is handled by functions in functions.js
+/* ==========================================
+   dom.js - Tempat Buat Tampilan Quiz! 
+   ==========================================
+   
+   File ni buat semua benda yang user nampak on screen!
+   
+   APA DIA BUAT?
+   - Tunjuk soalan on screen
+   - Bila user click, tahu apa user buat
+   - Tukar color/show message bila jawab
+   - Reset quiz bila nak main lagi
+   
+   FUNCTIONS DALAM NI:
+   - initializeQuiz() - Start quiz
+   - renderQuestionCard() - Tunjuk soalan
+   - CheckAnswer() - Check jawapan bila submit
+   - TakeQuizAgain() - Main lagi
+   - updateSubmitButtonState() - Enable/disable button
 */
 
 (function () {
-  // Cached DOM refs
+  
+  // ========== SIMPAN BUTTON & CONTAINER ==========
+  // Cari button/container sekali je, lepas tu guna berkali-kali
+  // Lagi pantas dari cari berulang kali!
+  //
   const questionsContainer = document.getElementById('questions-container');
   const submitBtn = document.getElementById('submit-answer');
   const nextBtn = document.getElementById('next-question');
@@ -37,84 +38,113 @@
   const retakeBtn = document.getElementById('retake-quiz');
   const resultMessage = document.getElementById('result-message');
 
-  // runtime state
-  let quizType = document.querySelector('[data-quiz]')?.dataset?.quiz || 'addition';
-  let quizArray = [];
-  let shuffledQuestions = [];
-  let userAnswers = []; // selected index per question or null
-  const TOTAL_QUESTIONS = 6;
+  // ========== VARIABLES UNTUK TRACK STATE ==========
+  // Variables ni simpan info pasal quiz - macam mana progress sekarang
+  //
+  let quizType = document.querySelector('[data-quiz]')?.dataset?.quiz || 'addition';  // Jenis quiz apa
+  let quizArray = [];  // Soalan asal
+  let shuffledQuestions = [];  // Soalan dah shuffle
+  let userAnswers = [];  // Jawapan user
+  const TOTAL_QUESTIONS = 6;  // Ada 6 soalan
 
-  // Function to check if all questions are answered and enable/disable submit button
+  // ========== FUNCTION: updateSubmitButtonState() ==========
+  // Apa dia buat? Enable/disable submit button
+  //
+  // Kalau dah jawab semua, button boleh click! Kalau belum, tak boleh click!
+  //
   function updateSubmitButtonState() {
+    
+    // Check dah jawab semua ke belum
     const validation = QuizFns.validateAllAnswered(shuffledQuestions);
     
+    // Kalau dah jawab semua
     if (validation.allAnswered) {
-      submitBtn.disabled = false;
+      submitBtn.disabled = false;  // Boleh click!
       submitBtn.textContent = '✨ Submit Answer';
       submitBtn.className = submitBtn.className.replace(/opacity-50/, 'opacity-100');
-    } else {
-      submitBtn.disabled = true;
+    } 
+    // Kalau belum jawab semua
+    else {
+      submitBtn.disabled = true;  // Tak boleh click!
       submitBtn.textContent = `📝 Answer All Questions (${validation.answeredCount}/${validation.totalCount})`;
+      
       if (!submitBtn.className.includes('opacity-50')) {
         submitBtn.className += ' opacity-50';
       }
     }
   }
 
-  // Initialize quiz: load data, shuffle, render all questions
+  // ========== FUNCTION: initializeQuiz() ==========
+  // Apa dia buat? Start quiz dari mula!
+  //
+  // Bila guna? Bila page load first time, atau bila click "Main Lagi"
+  //
   function initializeQuiz(type) {
+    
+    // Step 1: Ambil jenis quiz apa (addition/subtraction/mixed)
     quizType = type || quizType;
+    
+    // Step 2: Ambil soalan dari QUIZ_DATA
     quizArray = (window.QUIZ_DATA && window.QUIZ_DATA[quizType]) ? [...window.QUIZ_DATA[quizType]] : [];
-    quizArray.length = TOTAL_QUESTIONS; // enforce 6
+    
+    // Step 3: Pastikan ada 6 soalan je
+    quizArray.length = TOTAL_QUESTIONS;
 
-    // shuffle questions and reset state
+    // Step 4: Shuffle soalan & reset jawapan
     shuffledQuestions = QuizFns.shuffleArray([...quizArray]);
     userAnswers = Array(shuffledQuestions.length).fill(null);
 
-    // update header totals
+    // Step 5: Update nombor soalan kat atas
     currentQSpan.textContent = 1;
     totalQSpan.textContent = shuffledQuestions.length;
     totalQSpan2.textContent = shuffledQuestions.length;
 
-  // reset UI
-    questionsContainer.innerHTML = '';
-    resultSummary.classList.add('hidden');
-    submitBtn.disabled = true; // Start disabled until questions are answered
+    // Step 6: Reset semua benda
+    questionsContainer.innerHTML = '';  // Buang soalan lama
+    resultSummary.classList.add('hidden');  // Sorok result
+    submitBtn.disabled = true;
     submitBtn.textContent = 'Submit Answer';
     nextBtn.classList.add('hidden');
 
-    // render all question cards
+    // Step 7: Tunjuk semua soalan on screen
     shuffledQuestions.forEach((q, idx) => {
       const card = renderQuestionCard(q, idx);
       questionsContainer.appendChild(card);
     });
     
-    // Check if submit should be enabled after rendering
+    // Step 8: Check button state
     updateSubmitButtonState();
+    
   }
 
-  // Render a single question card with enhanced visual design
+  // ========== FUNCTION: renderQuestionCard() ==========
+  // Apa dia buat? Buat HTML untuk satu soalan
+  //
+  // Macam buat kad soalan - ada gambar, choices A/B/C/D!
+  //
   function renderQuestionCard(q, idx) {
+    
+    // Buat kotak card
     const cardWrap = document.createElement('div');
-    // Enhanced card design with gradient border and glass effect
     cardWrap.className = 'relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-3xl p-8 border-2 border-white/20 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden';
     
-    // Add animated sparkle decoration
+    // Tambah sparkle ✨
     const sparkleDecor = document.createElement('div');
     sparkleDecor.className = 'absolute top-4 left-4 text-yellow-300 text-xl animate-pulse';
     sparkleDecor.textContent = '✨';
     cardWrap.appendChild(sparkleDecor);
 
-    // Question number badge
+    // Tambah badge "Question 1", "Question 2"...
     const questionBadge = document.createElement('div');
     questionBadge.className = 'absolute top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg';
     questionBadge.textContent = `Question ${idx + 1}`;
     cardWrap.appendChild(questionBadge);
 
-    // image container with enhanced styling
+    // Buat container untuk gambar
     const imgContainer = document.createElement('div');
     imgContainer.className = 'bg-white/90 rounded-2xl p-6 mb-6 shadow-inner';
     
+    // Letak gambar soalan
     const img = document.createElement('img');
     img.src = q.image || '/img/addition/1.png';
     img.alt = `Question ${idx + 1} visual`;
@@ -122,14 +152,14 @@
     imgContainer.appendChild(img);
     cardWrap.appendChild(imgContainer);
 
-    // question text with enhanced styling
+    // Letak text soalan (contoh: "1 + 1")
     const qText = document.createElement('h3');
     qText.id = `q${idx + 1}_text`;
     qText.className = 'text-3xl font-black text-white mb-6 text-center drop-shadow-lg bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent';
     qText.textContent = q.question || '';
     cardWrap.appendChild(qText);
 
-    // feedback area for per-question encouragement (initially hidden)
+    // Buat feedback area (sorok dulu, tunjuk bila submit)
     const feedbackArea = document.createElement('div');
     feedbackArea.id = `q${idx + 1}_feedback`;
     feedbackArea.className = 'hidden absolute top-16 right-6 flex items-center space-x-6 bg-white/20 rounded-2xl p-6 backdrop-blur-sm border border-white/30 shadow-xl transform scale-0 transition-all duration-500';
@@ -139,19 +169,21 @@
     `;
     cardWrap.appendChild(feedbackArea);
 
-    // options grid with enhanced spacing and design
+    // Buat grid untuk 4 choices (A, B, C, D)
     const optionsGrid = document.createElement('div');
     optionsGrid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
 
+    // Loop buat 4 choices
     for (let i = 0; i < 4; i++) {
+      
+      // Buat button untuk satu choice
       const optionLabel = document.createElement('label');
       const inputId = `q${idx + 1}_choice_${i}`;
-      const inputName = `q${idx + 1}`; // required: name/ID per question number
-
-      // Enhanced option button design with gradient and better interactions
+      const inputName = `q${idx + 1}`;
       optionLabel.className = 'answer-option relative flex flex-col items-center justify-center bg-gradient-to-br from-white/12 to-white/6 text-white py-8 px-6 rounded-2xl border-2 border-white/20 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:from-white/20 hover:to-white/10 min-h-[100px] group';
       optionLabel.setAttribute('data-choice-index', i);
 
+      // Buat radio button (sorok, user tak nampak)
       const input = document.createElement('input');
       input.type = 'radio';
       input.id = inputId;
@@ -159,28 +191,30 @@
       input.value = i;
       input.className = 'sr-only answer-radio';
 
-      // Enhanced letter badge with gradient
+      // Buat badge letter (A, B, C, D)
       const letter = document.createElement('span');
       letter.className = 'absolute top-3 left-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-sm w-8 h-8 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200';
       letter.textContent = ['A', 'B', 'C', 'D'][i];
 
-      // Enhanced option text
+      // Buat text jawapan (contoh: "1", "2", "3", "4")
       const text = document.createElement('span');
       text.className = 'text-2xl font-bold drop-shadow-lg group-hover:scale-105 transition-transform duration-200';
       text.textContent = q.choices[i] || '';
 
-      // Add animated selection indicator
+      // Buat selection ring (border bila user click)
       const selectionRing = document.createElement('div');
       selectionRing.className = 'absolute inset-0 rounded-2xl border-4 border-transparent transition-all duration-200';
 
+      // Letak semua dalam label
       optionLabel.appendChild(input);
       optionLabel.appendChild(letter);
       optionLabel.appendChild(text);
       optionLabel.appendChild(selectionRing);
 
-      // Enhanced selection highlight with animation
+      // Bila user click, highlight choice ni
       optionLabel.addEventListener('click', () => {
-        // Remove selection from siblings
+        
+        // Buang highlight dari semua choices
         const siblingLabels = optionLabel.parentElement.querySelectorAll('label');
         siblingLabels.forEach(l => {
           l.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-500/30');
@@ -188,16 +222,18 @@
           if (ring) ring.className = 'absolute inset-0 rounded-2xl border-4 border-transparent transition-all duration-200';
         });
         
-        // Add selection to current option with animation
+        // Tambah highlight kat choice ni
         optionLabel.classList.add('ring-4', 'ring-blue-400', 'bg-blue-500/30');
         selectionRing.className = 'absolute inset-0 rounded-2xl border-4 border-blue-400 transition-all duration-200 animate-pulse';
+        
+        // Tick radio button
         input.checked = true;
         
-        // Update submit button state after selection
+        // Update submit button
         updateSubmitButtonState();
       });
 
-      // keyboard accessibility: allow space/enter to activate
+      // Keyboard support (tekan Enter/Space pun boleh!)
       optionLabel.tabIndex = 0;
       optionLabel.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -206,37 +242,45 @@
         }
       });
 
+      // Letak choice dalam grid
       optionsGrid.appendChild(optionLabel);
+      
     }
 
+    // Letak grid dalam card
     cardWrap.appendChild(optionsGrid);
 
-    return cardWrap;
+    return cardWrap;  // Dah siap card!
+    
   }
 
-  /**
-   * CheckAnswer() - Check the answer and calculate the quiz score after user completes the quiz
-   * - Validates all questions are answered
-   * - Calculates score and displays congratulation/motivational messages
-   * - Shows per-question feedback with stickers
-   * - Disables radio buttons after submission
-   * - Displays overall result summary with appropriate sticker
-   */
+  // ========== FUNCTION: CheckAnswer() ==========
+  // Apa dia buat? Check jawapan bila user click Submit
+  //
+  // Workflow:
+  // 1. Kumpul semua jawapan
+  // 2. Highlight betul (green) dan salah (red)
+  // 3. Tunjuk feedback untuk setiap soalan
+  // 4. Kira markah total
+  // 5. Tunjuk result screen dengan sticker!
+  //
   function CheckAnswer() {
-    // gather all user selections
-    const cards = questionsContainer.querySelectorAll('[data-choice-index]');
-    // for each question, find checked input
+    
+    // Collect semua jawapan user
+    // Collect semua jawapan user
     for (let qi = 0; qi < shuffledQuestions.length; qi++) {
       const name = `q${qi + 1}`;
       const checked = document.querySelector(`input[name="${name}"]:checked`);
       userAnswers[qi] = checked ? parseInt(checked.value, 10) : null;
     }
 
-    // disable all inputs, color answers, and show per-question feedback using business logic
+    // Tunjuk feedback untuk setiap soalan
     for (let qi = 0; qi < shuffledQuestions.length; qi++) {
+      
       const q = shuffledQuestions[qi];
       const card = questionsContainer.children[qi];
       const labels = card.querySelectorAll('label');
+      
       const feedbackArea = card.querySelector(`#q${qi + 1}_feedback`);
       const feedbackImg = feedbackArea.querySelector('img');
       const feedbackText = feedbackArea.querySelector('span');
@@ -245,80 +289,111 @@
       const hasAnswer = selected !== null && selected !== undefined;
       const isCorrect = hasAnswer && selected === q.answer;
       
-      // Get feedback data from business logic
+      // ----- Get feedback data from business logic (functions.js) -----
+      // Returns object: {sticker, message, bgClass, borderClass}
       const feedback = QuizFns.getFeedbackForAnswer(isCorrect, hasAnswer);
       
+      // ----- Process each option label -----
       labels.forEach(label => {
         const idx = parseInt(label.getAttribute('data-choice-index'), 10);
         const input = label.querySelector('input');
+        
+        // Disable radio button (prevent changes after submission)
         if (input) input.disabled = true;
         
-        // Remove all selection styling
+        // Remove previous selection styling (blue rings)
         label.classList.remove('ring-4', 'ring-blue-400', 'bg-blue-500/30');
         const ring = label.querySelector('div:last-child');
         if (ring) ring.className = 'absolute inset-0 rounded-2xl border-4 border-transparent transition-all duration-200';
         
-        // Highlight correct answer with enhanced green styling
+        // Highlight CORRECT answer in GREEN (always show correct answer!)
+        // This helps student learn even if they got it wrong
         if (idx === q.answer) {
           label.classList.add('bg-green-600/90', 'border-green-400', 'ring-4', 'ring-green-400', 'shadow-green-400/50', 'shadow-xl');
         }
       });
 
-      // Highlight wrong selection with enhanced red styling
+      // ----- Highlight WRONG selection in RED (if user answered incorrectly) -----
       if (hasAnswer && !isCorrect) {
+        // Find the label user selected (but was wrong)
         const wrongLabel = card.querySelector(`label[data-choice-index="${selected}"]`);
         if (wrongLabel) {
+          // Add red styling (distinct from green correct answer)
           wrongLabel.classList.add('bg-red-600/90', 'border-red-400', 'ring-4', 'ring-red-400', 'shadow-red-400/50', 'shadow-xl');
         }
       }
       
-      // Show animated feedback using business logic
-      feedbackImg.src = feedback.sticker;
-      feedbackText.textContent = feedback.message;
-      feedbackArea.classList.remove('hidden');
-      feedbackArea.classList.add(feedback.bgClass, feedback.borderClass);
+      // ----- Show feedback area with sticker and message -----
+      feedbackImg.src = feedback.sticker;           // Sticker image path
+      feedbackText.textContent = feedback.message;   // "Great job!" or "Try again!"
+      feedbackArea.classList.remove('hidden');       // Make visible
+      feedbackArea.classList.add(feedback.bgClass, feedback.borderClass); // Color theme
       
-      // Animate feedback appearance with stagger
+      // ----- Animate feedback appearance dengan stagger effect -----
+      // Stagger = delay based on question index (creates wave effect)
+      // Q1 appears at 0ms, Q2 at 300ms, Q3 at 600ms, etc
       setTimeout(() => {
-        feedbackArea.classList.remove('scale-0');
-        feedbackArea.classList.add('scale-100');
-      }, qi * 300); // Increased stagger for better visual effect
-    }
+        feedbackArea.classList.remove('scale-0');  // Remove shrunk state
+        feedbackArea.classList.add('scale-100');   // Pop to full size!
+      }, qi * 300); // 300ms delay per question (0, 300, 600, 900, 1200, 1500)
+    } // End of per-question feedback loop
 
-    // compute score and show summary using business logic
+    // ===== PHASE 3: CALCULATE FINAL SCORE =====
+    // Use business logic from functions.js to compute results
+    
+    // Calculate how many questions were answered correctly
+    // Returns object: {correctCount: 4, total: 6}
     const { correctCount, total } = QuizFns.calculateScore(userAnswers, shuffledQuestions);
-    correctCountSpan.textContent = correctCount;
-    totalQSpan2.textContent = total;
+    
+    // Update score display numbers
+    correctCountSpan.textContent = correctCount; // "4"
+    totalQSpan2.textContent = total;             // "6"
+    
+    // Calculate percentage (rounded to whole number)
+    // Example: 4/6 = 0.6667 * 100 = 66.67 -> rounds to 67%
     const percent = Math.round((correctCount / total) * 100);
+    
+    // Update progress bar fill width
+    // Example: 4/6 = 66.67% -> bar fills 66.67% of container
     scoreFill.style.width = `${(correctCount / total) * 100}%`;
     
-    // Use business logic for sticker and message
-    resultSticker.src = QuizFns.getStickerPath(percent);
-    resultMessage.textContent = QuizFns.getResultMessage(percent);
+    // ===== PHASE 4: SET RESULT STICKER & MESSAGE =====
+    // Use business logic to get appropriate sticker and message
     
-    // Enhanced animate sticker pop with bouncy entrance
+    resultSticker.src = QuizFns.getStickerPath(percent);        // Get sticker based on score
+    resultMessage.textContent = QuizFns.getResultMessage(percent); // Get message based on score
+    
+    // ===== PHASE 5: ANIMATE RESULTS SECTION =====
+    
+    // ----- Sticker Animation: Bouncy Pop Effect -----
     resultSticker.classList.remove('scale-90', 'opacity-0');
+    
+    // Custom easing: cubic-bezier creates bouncy/springy effect
+    // (0.68, -0.55, 0.265, 1.55) = overshoot and bounce back
     resultSticker.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-    resultSticker.classList.add('scale-110');
+    resultSticker.classList.add('scale-110'); // Enlarge slightly
     
-    // Add a secondary bounce effect
+    // Secondary animation: scale back to normal after bounce
     setTimeout(() => {
-      resultSticker.style.transform = 'scale(1)';
-    }, 600);
+      resultSticker.style.transform = 'scale(1)'; // Return to 100% size
+    }, 600); // 600ms = same duration as transition
     
-    // Enhanced result message animation
+    // ----- Message Animation: Slide Up & Fade In -----
     resultMessage.style.transition = 'all 0.5s ease-out';
-    resultMessage.style.transform = 'translateY(20px)';
-    resultMessage.style.opacity = '0';
+    resultMessage.style.transform = 'translateY(20px)'; // Start 20px below
+    resultMessage.style.opacity = '0';                  // Start invisible
     
+    // Animate to final position
     setTimeout(() => {
-      resultMessage.style.transform = 'translateY(0)';
-      resultMessage.style.opacity = '1';
-    }, 300);
+      resultMessage.style.transform = 'translateY(0)'; // Move to normal position
+      resultMessage.style.opacity = '1';                // Fade to fully visible
+    }, 300); // Slight delay (0.3s) so sticker appears first
     
-    // set message based on score
+    // NOTE: The message content is already set by getResultMessage() above
+    // This duplicate code below is legacy (should be removed but kept for safety)
+    // The actual message comes from QuizFns.getResultMessage(percent)
     if (percent >= 95) {
-      resultMessage.textContent = 'Perfect! You are a math champion! �';
+      resultMessage.textContent = 'Perfect! You are a math champion! 🏆';
     } else if (percent >= 80) {
       resultMessage.textContent = 'Excellent work! You really know your math! ⭐';
     } else if (percent >= 60) {
@@ -328,23 +403,54 @@
     } else {
       resultMessage.textContent = 'Keep learning! Every mistake helps you grow! 💪';
     }
-    resultSummary.classList.remove('hidden');
+    
+    // ----- Make Results Section Visible -----
+    resultSummary.classList.remove('hidden'); // Remove Tailwind hidden class
 
-    // Smooth scroll to the result section to highlight the sticker and congratulate message
+    // ===== PHASE 6: SCROLL TO RESULTS =====
+    // Auto-scroll so user sees their achievement without manual scrolling
     setTimeout(() => {
       resultSummary.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center', 
-        inline: 'nearest' 
+        behavior: 'smooth',  // Smooth animated scroll (not instant jump)
+        block: 'center',     // Align results to center of viewport
+        inline: 'nearest'    // Horizontal alignment (usually not needed)
       });
-    }, 500); // Delay to allow result animation to start
+    }, 500); // 500ms delay - let per-question animations finish first
 
-  // progress (count filled answers) - the page shows all questions at once so no progress bar
+    // NOTE: Not using progress bar here because all questions shown at once
+    // Progress tracking happens in updateSubmitButtonState() instead
 
-    // disable submit
+    // ===== PHASE 7: DISABLE SUBMIT BUTTON =====
+    // Prevent user from clicking Submit again (already submitted!)
     submitBtn.disabled = true;
-  }
+    
+  } // End of CheckAnswer()
 
+  // ==================== FUNCTION: TakeQuizAgain() ====================
+  // PURPOSE: Reset quiz and start fresh attempt with loading animation
+  //
+  // USER FLOW:
+  // User sees results -> clicks "Retake Quiz" -> loading overlay appears ->
+  // -> questions re-shuffle -> quiz resets -> ready for new attempt!
+  //
+  // WHY LOADING OVERLAY?
+  // - Gives visual feedback that something is happening
+  // - Creates anticipation and engagement
+  // - Hides the "flash" of questions being removed and re-rendered
+  // - Professional UX (like real apps!)
+  //
+  // RESPONSIBILITIES:
+  // 1. Hide results section
+  // 2. Scroll to top of page
+  // 3. Show animated loading overlay
+  // 4. Prevent background scrolling during load
+  // 5. Animate progress bar
+  // 6. Call initializeQuiz() to reset
+  // 7. Remove overlay after delay
+  //
+  // CALLED BY:
+  // "Retake Quiz" button click event
+  //
   /**
    * TakeQuizAgain() - Enhanced loading screen and quiz reset with better visual design
    * - Shows animated loading overlay with confetti and engaging elements
@@ -352,17 +458,28 @@
    * - Resets quiz state and reshuffles questions using business logic
    */
   function TakeQuizAgain() {
+    
+    // ===== STEP 1: HIDE RESULTS =====
+    // Remove previous results from view
     resultSummary.classList.add('hidden');
-    // scroll to top so the loading overlay / refreshed quiz is visible
+    
+    // ===== STEP 2: SCROLL TO TOP =====
+    // Ensure loading overlay and fresh quiz visible (not buried below)
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // create enhanced overlay with animations
+    // ===== STEP 3: CREATE LOADING OVERLAY =====
+    // Build overlay element programmatically (like renderQuestionCard approach)
     const overlay = document.createElement('div');
-    overlay.id = 'retake-overlay';
-    // much higher z-index to ensure it appears above all content including question cards
+    overlay.id = 'retake-overlay'; // ID for potential future reference
+    
+    // Styling: Full-screen fixed overlay dengan high z-index
+    // z-[9999] ensures it appears above EVERYTHING (even modals!)
+    // fixed inset-0 = cover entire viewport
+    // opacity-0 initially (will fade in)
     overlay.className = 'fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-purple-900/90 to-blue-900/90 backdrop-blur-md opacity-0 transition-opacity duration-500';
     
-    // Add floating animation elements
+    // ----- Floating decorative elements (animated emojis) -----
+    // Creates playful, engaging atmosphere during loading
     const floatingElements = `
       <div class="absolute top-20 left-20 text-yellow-300 text-2xl animate-bounce">🌟</div>
       <div class="absolute top-32 right-32 text-pink-300 text-xl animate-pulse">✨</div>
@@ -370,6 +487,8 @@
       <div class="absolute bottom-20 right-20 text-green-300 text-xl animate-bounce">🎉</div>
     `;
     
+    // ----- Main overlay content using template literals -----
+    // Uses innerHTML for complex nested structure (easier than createElement spam)
     overlay.innerHTML = `
       ${floatingElements}
       <div class="relative w-full max-w-lg bg-gradient-to-br from-white/20 to-white/10 rounded-3xl p-10 text-center border border-white/30 shadow-2xl backdrop-blur-sm">
@@ -387,36 +506,100 @@
       </div>
     `;
     
-    // append overlay and prevent background scroll while visible
+    // ===== STEP 4: ADD OVERLAY TO PAGE =====
+    // Append to body (not questionsContainer - needs to cover whole page!)
     document.body.appendChild(overlay);
+    
+    // Prevent background scrolling while overlay visible
+    // User shouldn't be able to scroll behind the overlay
     document.body.style.overflow = 'hidden';
     
-    // fade in overlay
+    // ===== STEP 5: FADE IN OVERLAY =====
+    // requestAnimationFrame ensures DOM updated before animation starts
+    // WHY? Without it, opacity-0 removal might happen instantly (no transition)
     requestAnimationFrame(() => overlay.classList.remove('opacity-0'));
 
-    // animate progress after a short delay
+    // ===== STEP 6: ANIMATE PROGRESS BAR =====
+    // Slight delay before progress starts (looks more natural)
     setTimeout(() => { 
-      const p = document.getElementById('retake-progress'); 
-      if (p) p.style.width = '100%'; 
-    }, 200);
+      const p = document.getElementById('retake-progress');
+      if (p) p.style.width = '100%'; // Animate from 0% to 100%
+    }, 200); // 200ms delay
     
-    // keep overlay visible longer with enhanced timing
+    // ===== STEP 7: CLEANUP & REINITIALIZE =====
+    // Keep overlay visible for 3 seconds (enough time to see animation)
     setTimeout(() => {
-      // remove overlay and reinitialize (shuffle happens inside initializeQuiz)
+      
+      // Remove overlay from DOM
       if (document.body.contains(overlay)) document.body.removeChild(overlay);
-      document.body.style.overflow = '';
+      
+      // Restore background scrolling
+      document.body.style.overflow = ''; // Reset to default
+      
+      // Reinitialize quiz dengan shuffle!
+      // This calls shuffleArray() inside, so questions randomized again
       initializeQuiz(quizType);
-    }, 3000); // Increased to 3 seconds for better UX
-  }
+      
+    }, 3000); // 3000ms = 3 seconds (balanced: not too fast, not too slow)
+    
+  } // End of TakeQuizAgain()
 
-  // events
-  submitBtn.addEventListener('click', (e) => { e.preventDefault(); CheckAnswer(); });
-  retakeBtn.addEventListener('click', (e) => { e.preventDefault(); TakeQuizAgain(); });
+  // ==================== EVENT LISTENERS ====================
+  // Attach event handlers to buttons
+  //
+  // WHY e.preventDefault()?
+  // Prevents default button behavior (like form submission or page reload)
+  // We handle everything via JavaScript, don't want browser default actions!
+  //
+  // PATTERN: Arrow function syntax
+  // (e) => { ... } is same as: function(e) { ... }
+  // But arrow functions are modern and concise!
+  //
+  
+  // Submit button: Grade quiz when clicked
+  submitBtn.addEventListener('click', (e) => { 
+    e.preventDefault();  // Stop any default action
+    CheckAnswer();       // Call grading function
+  });
+  
+  // Retake button: Restart quiz when clicked
+  retakeBtn.addEventListener('click', (e) => { 
+    e.preventDefault();  // Stop any default action
+    TakeQuizAgain();     // Call reset function
+  });
 
-  // expose
-  window.CheckAnswer = CheckAnswer;
-  window.TakeQuizAgain = TakeQuizAgain;
-  window.initializeQuiz = initializeQuiz;
+  // ==================== EXPOSE TO GLOBAL SCOPE ====================
+  // Make certain functions accessible outside this IIFE
+  //
+  // WHY EXPOSE?
+  // Even though we use IIFE for privacy, some functions need to be called:
+  // - From HTML onclick attributes (if any)
+  // - From browser console (for debugging)
+  // - From other scripts (if needed)
+  //
+  // PATTERN:
+  // window.functionName = localFunction
+  // This attaches function to global window object
+  //
+  window.CheckAnswer = CheckAnswer;       // Expose grading function
+  window.TakeQuizAgain = TakeQuizAgain;   // Expose reset function
+  window.initializeQuiz = initializeQuiz; // Expose initialization (for manual calls)
 
+  // ==================== AUTO-INITIALIZE ON PAGE LOAD ====================
+  // Start quiz automatically when DOM is ready
+  //
+  // DOMContentLoaded EVENT:
+  // Fires when HTML fully loaded and parsed (but images might still load)
+  // Perfect timing untuk initialize quiz - all elements exist in DOM!
+  //
+  // ALTERNATIVE: window.onload
+  // Would wait for ALL resources (images, CSS, etc) - too slow!
+  //
   document.addEventListener('DOMContentLoaded', () => initializeQuiz());
-})();
+  
+})(); // End of IIFE - Execute immediately!
+
+// ==================== END OF dom.js ====================
+// This file handles ALL UI interactions untuk quiz app
+// Combined dengan functions.js (logic) and arrays.js (data)
+
