@@ -346,6 +346,126 @@ button:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
+/* Quiz button decorations */
+input[type="button"] {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Sparkle effect on hover */
+input[type="button"]:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.2);
+  filter: brightness(1.1);
+}
+
+/* Active/click effect */
+input[type="button"]:active {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animated shine effect */
+input[type="button"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+input[type="button"]:hover::before {
+  left: 100%;
+}
+
+/* Pulse animation for buttons */
+@keyframes pulse-button {
+  0%, 100% {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 8px 35px rgba(255, 215, 0, 0.4);
+  }
+}
+
+input[type="button"]:hover {
+  animation: pulse-button 2s ease-in-out infinite;
+}
+
+/* Radio button decorations */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #667eea;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Radio button hover effect */
+input[type="radio"]:hover {
+  border-color: #764ba2;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+}
+
+/* Radio button checked state */
+input[type="radio"]:checked {
+  border-color: #764ba2;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  box-shadow: 0 0 15px rgba(118, 75, 162, 0.6);
+  animation: radio-pop 0.3s ease;
+}
+
+/* Inner dot when checked */
+input[type="radio"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Pop animation for radio buttons */
+@keyframes radio-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Disabled radio buttons */
+input[type="radio"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #ccc;
+}
+
+input[type="radio"]:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
   width: 8px;

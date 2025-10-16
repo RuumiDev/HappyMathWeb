@@ -177,12 +177,12 @@ class HappyMathTransitions {
     }
 }
 
-// Initialize transitions when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     new HappyMathTransitions();
 });
 
-// Add CSS animations
+
 const style = document.createElement('style');
 style.textContent = `
     /* Page transition overlay */

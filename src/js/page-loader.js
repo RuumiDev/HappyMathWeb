@@ -1,16 +1,7 @@
-/* page-loader.js
-   Purpose: Create engaging page loader with math tips and stickers
-   Features: 
-   - Animated loading screen with progress bar
-   - Random math tips rotation
-   - Sticker animations
-   - Smooth page transitions
-   - Immediate loading to prevent content flash
-*/
 
-// Immediate execution to prevent any content flash
+
 (function() {
-  // First: Create and show loader immediately
+  
   let tipInterval;
   let loaderDuration = 4500; // Default duration
   
@@ -21,7 +12,7 @@
   // Longer duration when coming from quiz pages to home
   if (referrer && (referrer.includes('addition') || referrer.includes('subtraction') || referrer.includes('mixed')) && 
       (currentPath === '/' || currentPath.includes('index'))) {
-    loaderDuration = 6000; // 6 seconds for quiz-to-home navigation
+    loaderDuration = 6000; // 6 seconds for quiz to home transition
   }
   
   const mathTips = [

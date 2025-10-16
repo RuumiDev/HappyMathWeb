@@ -9,11 +9,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="/src/styles.css">
-    
-    <!-- Page Loader (load early to prevent flash) -->
-    <script src="/src/js/page-loader.js"></script>
-</head></script>
-    <link rel="stylesheet" href="/src/styles.css">
+    <script type="text/javascript" src="quiz_math.js"></script>
 </head>
 <body class="overflow-x-hidden">
 
@@ -37,7 +33,7 @@
 
 <!-----------------Header-------------------->
 <div class="bg-transparent">
-  <header id="main-header" class="absolute inset-x-0 top-0 z-50 transition-all duration-300" data-aos="fade-down" data-aos-duration="1000">
+  <header id="main-header" class="absolute inset-x-0 top-0 z-50 transition-all duration-300">
     <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
         <a href="index.html" class="-m-1.5 p-1.5 flex items-center space-x-2 group">
@@ -65,7 +61,7 @@
 </div>
 <!-----------------End of Header-------------------->
 
-<!-----------------Subtraction Quiz Section-------------------->
+<!---------------------------------- Subtraction Quiz Section---------------------------------->
 <section class="relative min-h-screen pt-24 pb-16" id="subtraction-quiz">
   <!-- Decorations -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -79,47 +75,154 @@
     <div class="star-twinkle absolute" style="top: 95%; left: 15%; animation-delay: 3.5s;">★</div>
   </div>
 
-  <div class="container mx-auto px-6 relative z-10" data-quiz="subtraction">
-    <!-- header info (total questions) -->
-    <div class="max-w-4xl mx-auto mb-6">
-      <div class="flex justify-between text-white/80 text-sm">
-        <span>Question <span id="current-question">1</span> of <span id="total-questions">6</span></span>
-        <span id="timer">--</span>
-      </div>
-    </div>
-
-    <!-- Quiz Container: all six question cards are rendered by dom.js -->
+  <div class="container mx-auto px-6 relative z-10">
     <div class="max-w-4xl mx-auto">
-      <!-- Questions container: all 6 questions will be rendered here -->
-      <div id="questions-container" class="grid grid-cols-1 gap-8 mb-6" aria-live="polite">
-        <!-- dom.js will render six question cards here -->
+      <!-- Quiz Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-5xl font-black text-white mb-4 drop-shadow-lg">Subtraction Quiz ➖</h1>
+        <p class="text-white/90 text-lg">Test your subtraction skills!</p>
       </div>
 
-      <!-- Submit / Next controls -->
-      <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-        <button id="submit-answer" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-all duration-200 shadow-xl">Submit Answer</button>
-        <button id="next-question" class="ml-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-8 rounded-full hover:scale-105 transition-all duration-200 shadow-xl hidden">Next Question →</button>
-        <div class="mt-6">
-          <a href="index.html#features" class="text-white/60 hover:text-white transition-colors duration-300">← Back to Quiz Selection</a>
-        </div>
-      </div>
-
-      <!-- Result / progression summary (appears after submit) -->
-      <div id="result-summary" class="mt-8 max-w-2xl mx-auto hidden text-center">
-        <div id="score-bar" class="bg-white/10 rounded-full h-6 overflow-hidden mb-4">
-          <div id="score-fill" class="bg-green-500 h-6 w-0 transition-all duration-500"></div>
-        </div>
-        <div id="score-text" class="text-white/80 mb-4">You got <span id="correct-count">0</span> out of <span id="total-questions-2">0</span></div>
-  <img id="result-sticker" src="/img/stickers/encourage.png" alt="sticker" class="mx-auto w-32 h-32 object-contain transition-transform duration-500 transform" />
-        <div id="result-message" class="text-white/90 mt-2 text-lg font-semibold"></div>
-        <div class="mt-4">
-          <button id="retake-quiz" class="mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-8 rounded-full hover:from-purple-600 hover:to-pink-600 transform hover:scale-105 transition-all duration-300 shadow-xl">🔄 Retake Quiz</button>
-        </div>
+    <!----------------------------------  Subtraction Quiz ---------------------------------->
+      <div class="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-8 border-4 border-white/50">
+        <table class="w-full border-2 border-gray-300">
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">1.</div>
+              <img src="/img/subtraction/2-1.png" alt="2 - 1 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que1" id="Que1" value="true" class="mr-2" />1<br />
+                <input type="radio" name="Que1" id="Que1" value="false" class="mr-2" />2<br />
+                <input type="radio" name="Que1" id="Que1" value="false" class="mr-2" />3<br />
+                <input type="radio" name="Que1" id="Que1" value="false" class="mr-2" />0<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer1" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">2.</div>
+              <img src="/img/subtraction/2-2.png" alt="2 - 2 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que2" id="Que2" value="false" class="mr-2" />1<br />
+                <input type="radio" name="Que2" id="Que2" value="true" class="mr-2" />0<br />
+                <input type="radio" name="Que2" id="Que2" value="false" class="mr-2" />2<br />
+                <input type="radio" name="Que2" id="Que2" value="false" class="mr-2" />3<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer2" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">3.</div>
+              <img src="/img/subtraction/3-1.png" alt="3 - 1 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que3" id="Que3" value="false" class="mr-2" />1<br />
+                <input type="radio" name="Que3" id="Que3" value="true" class="mr-2" />2<br />
+                <input type="radio" name="Que3" id="Que3" value="false" class="mr-2" />3<br />
+                <input type="radio" name="Que3" id="Que3" value="false" class="mr-2" />4<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer3" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">4.</div>
+              <img src="/img/subtraction/3-2.png" alt="3 - 2 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que4" id="Que4" value="false" class="mr-2" />0<br />
+                <input type="radio" name="Que4" id="Que4" value="false" class="mr-2" />2<br />
+                <input type="radio" name="Que4" id="Que4" value="false" class="mr-2" />3<br />
+                <input type="radio" name="Que4" id="Que4" value="true" class="mr-2" />1<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer4" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">5.</div>
+              <img src="/img/subtraction/4-1.png" alt="4 - 1 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que5" id="Que5" value="false" class="mr-2" />2<br />
+                <input type="radio" name="Que5" id="Que5" value="false" class="mr-2" />4<br />
+                <input type="radio" name="Que5" id="Que5" value="true" class="mr-2" />3<br />
+                <input type="radio" name="Que5" id="Que5" value="false" class="mr-2" />5<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer5" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 font-semibold text-lg text-center">
+              <div class="mb-2">6.</div>
+              <img src="/img/subtraction/4-2.png" alt="4 - 2 = ?" class="mx-auto max-w-md w-full rounded-lg shadow-md my-2" />
+            </td>
+            <td class="p-4 border-2 border-gray-300">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center text-lg">
+              <div class="inline-block text-left">
+                <input type="radio" name="Que6" id="Que6" value="false" class="mr-2" />1<br />
+                <input type="radio" name="Que6" id="Que6" value="false" class="mr-2" />3<br /> 
+                <input type="radio" name="Que6" id="Que6" value="true" class="mr-2" />2<br />
+                <input type="radio" name="Que6" id="Que6" value="false" class="mr-2" />4<br />
+              </div>
+            </td>
+            <td class="p-4 border-2 border-gray-300 text-center"><div id="answer6" class="font-semibold text-lg"></div></td>
+          </tr>
+          <tr>
+            <td class="p-4 border-2 border-gray-300 text-center" colspan="2">
+              <input type="button" value="Check Answer" onclick="CheckAnswer()" class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold py-3 px-8 rounded-full hover:scale-105 transition-all duration-200 shadow-xl cursor-pointer mr-2" />&nbsp; 
+              <input type="button" value="Take Quiz Again" onclick="takequizagain()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-8 rounded-full hover:scale-105 transition-all duration-200 shadow-xl cursor-pointer mr-2" />&nbsp; 
+              <input type="button" value="Home" onclick="location.replace('index.html')" class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:scale-105 transition-all duration-200 shadow-xl cursor-pointer" />
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
 </section>
-<!-----------------End of Subtraction Quiz Section-------------------->
+<!---------------------------------- End of Subtraction Quiz ---------------------------------->
 
 <!-----------------Footer-------------------->
 <footer class="relative text-white bg-gradient-to-br from-purple-900/90 via-blue-900/85 to-indigo-900/90 backdrop-blur-lg body-font border-t border-white/30 overflow-hidden" id="contact" data-aos="fade-up">
@@ -260,50 +363,12 @@
 </footer>
 <!-----------------End of Footer-------------------->
 
-<!-- Floating back to top button -->
-<button id="back-to-top" class="fixed bottom-6 right-6 bg-gradient-to-r from-pink-500 to-purple-600 text-white p-4 rounded-full shadow-2xl opacity-90 transition-all duration-300 hover:scale-110 hover:opacity-100 z-50 hover:shadow-pink-500/25">
-  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-  </svg>
-</button>
-
 <script>
-  // Initialize AOS animations
   AOS.init({
-    duration: 1200,
-    once: false,
-    offset: 100,
-    easing: 'ease-out-cubic',
-    mirror: true,
-    anchorPlacement: 'top-bottom'
-  });
-
-  // Back to top button functionality
-  const backToTopButton = document.getElementById('back-to-top');
-  
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-      backToTopButton.style.opacity = '1';
-      backToTopButton.style.transform = 'translateY(0)';
-    } else {
-      backToTopButton.style.opacity = '0.9';
-      backToTopButton.style.transform = 'translateY(0)';
-    }
-  });
-
-  backToTopButton.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    duration: 800,
+    once: true
   });
 </script>
 
-<!-- Quiz scripts (separated) -->
-<script src="/src/js/arrays.js"></script>
-<script src="/src/js/functions.js"></script>
-<script src="/src/js/dom.js"></script>
-
 </body>
-</html>
 </html>
