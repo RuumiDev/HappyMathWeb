@@ -703,35 +703,9 @@ input[type="radio"] {
   height: 26px;
   border: 3px solid #cbd5e1; /* Gray-300 */
   
-  /* SHAPE OPTIONS - Choose one by uncommenting: */
   
-  /* Option 1: Circle (default) */
-  /* border-radius: 50%; */
-  
-  /* Option 2: Rounded Square */
-  /* border-radius: 8px; */
-  
-  /* Option 3: Soft Rounded Square */
   border-radius: 12px;
   
-  /* Option 4: Diamond/Rotated Square */
-  /* border-radius: 4px;
-  transform: rotate(45deg); */
-  
-  /* Option 5: Star shape (using clip-path) */
-  /* clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); */
-  
-  /* Option 6: Heart shape */
-  /* border-radius: 50% 50% 0 0;
-  transform: rotate(-45deg);
-  width: 22px;
-  height: 22px; */
-  
-  /* Option 7: Hexagon */
-  /* clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%); */
-  
-  /* Option 8: Pentagon */
-  /* clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); */
   
   outline: none;
   cursor: pointer;
@@ -773,22 +747,7 @@ input[type="radio"]:checked::before {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Alternative: Use dot instead of checkmark (uncomment to use) */
-/*
-input[type="radio"]:checked::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: white;
-  animation: radioPop 0.3s ease;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
-}
-*/
+
 
 /* Disabled state */
 input[type="radio"]:disabled {
