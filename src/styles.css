@@ -396,75 +396,7 @@ input[type="button"]:hover {
   animation: pulse-button 2s ease-in-out infinite;
 }
 
-/* Radio button decorations */
-input[type="radio"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 3px solid #667eea;
-  border-radius: 50%;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-  background: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Radio button hover effect */
-input[type="radio"]:hover {
-  border-color: #764ba2;
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
-}
-
-/* Radio button checked state */
-input[type="radio"]:checked {
-  border-color: #764ba2;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  box-shadow: 0 0 15px rgba(118, 75, 162, 0.6);
-  animation: radio-pop 0.3s ease;
-}
-
-/* Inner dot when checked */
-input[type="radio"]:checked::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-/* Pop animation for radio buttons */
-@keyframes radio-pop {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Disabled radio buttons */
-input[type="radio"]:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  border-color: #ccc;
-}
-
-input[type="radio"]:disabled:hover {
-  transform: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+/* Radio button decorations - REMOVED DUPLICATE (See enhanced version below at line 767+) */
 
 /* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
@@ -688,4 +620,353 @@ html, body, #root, main, .container {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* ======================== Quiz Feedback Styling ======================== */
+
+/* Correct answer styling - Green theme */
+.quiz-correct {
+  color: #16a34a !important; /* Green-600 */
+  font-weight: bold;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); /* Green gradient */
+  border: 2px solid #86efac; /* Green-300 */
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
+  animation: fadeInScale 0.5s ease-out;
+  display: inline-block;
+  margin: 8px 0;
+}
+
+/* Wrong answer styling - Red theme */
+.quiz-wrong {
+  color: #dc2626 !important; /* Red-600 */
+  font-weight: bold;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); /* Red gradient */
+  border: 2px solid #fca5a5; /* Red-300 */
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+  animation: fadeInScale 0.5s ease-out;
+  display: inline-block;
+  margin: 8px 0;
+}
+
+/* Fade in and scale animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Optional: Add icons with pseudo-elements */
+.quiz-correct::before {
+  content: "✓ ";
+  font-size: 1.2em;
+  margin-right: 6px;
+  color: #16a34a;
+}
+
+.quiz-wrong::before {
+  content: "✗ ";
+  font-size: 1.2em;
+  margin-right: 6px;
+  color: #dc2626;
+}
+
+/* Hover effects for better interactivity */
+.quiz-correct:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3);
+  transition: all 0.3s ease;
+}
+
+.quiz-wrong:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* ======================== Custom Radio Button Styling ======================== */
+
+/* Hide default radio button */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 26px;
+  height: 26px;
+  border: 3px solid #cbd5e1; /* Gray-300 */
+  
+  /* SHAPE OPTIONS - Choose one by uncommenting: */
+  
+  /* Option 1: Circle (default) */
+  /* border-radius: 50%; */
+  
+  /* Option 2: Rounded Square */
+  /* border-radius: 8px; */
+  
+  /* Option 3: Soft Rounded Square */
+  border-radius: 12px;
+  
+  /* Option 4: Diamond/Rotated Square */
+  /* border-radius: 4px;
+  transform: rotate(45deg); */
+  
+  /* Option 5: Star shape (using clip-path) */
+  /* clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); */
+  
+  /* Option 6: Heart shape */
+  /* border-radius: 50% 50% 0 0;
+  transform: rotate(-45deg);
+  width: 22px;
+  height: 22px; */
+  
+  /* Option 7: Hexagon */
+  /* clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%); */
+  
+  /* Option 8: Pentagon */
+  /* clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); */
+  
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  background: white;
+  vertical-align: middle;
+  margin-right: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect */
+input[type="radio"]:hover {
+  border-color: #8b5cf6; /* Purple-500 */
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+  transform: scale(1.1);
+}
+
+/* Checked state - create inner circle */
+input[type="radio"]:checked {
+  border-color: #8b5cf6; /* Purple-500 */
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%); /* Purple to Pink gradient */
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+  animation: radioCheck 0.3s ease;
+}
+
+/* Inner white circle/checkmark for checked state */
+input[type="radio"]:checked::before {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  animation: radioPop 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Alternative: Use dot instead of checkmark (uncomment to use) */
+/*
+input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  animation: radioPop 0.3s ease;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+*/
+
+/* Disabled state */
+input[type="radio"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  border-color: #e5e7eb; /* Gray-200 */
+  background: #f3f4f6; /* Gray-100 */
+}
+
+input[type="radio"]:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for checking */
+@keyframes radioCheck {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Animation for inner circle */
+@keyframes radioPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Focus state for accessibility */
+input[type="radio"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3);
+}
+
+/* Focus visible (keyboard navigation) */
+input[type="radio"]:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* ======================== Enhanced Label Styling (Pure CSS) ======================== */
+
+/* Style the text next to radio buttons */
+input[type="radio"] + * {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+/* Highlight text when radio is hovered */
+input[type="radio"]:hover + * {
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+/* Style text when radio is checked */
+input[type="radio"]:checked + * {
+  color: #8b5cf6;
+  font-weight: 700;
+}
+
+/* Pulse effect on checked option (pure CSS animation) */
+input[type="radio"]:checked {
+  animation: radioCheck 0.3s ease, radioPulse 2s ease-in-out infinite;
+}
+
+@keyframes radioPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0.3);
+  }
+}
+
+/* Sparkle effect on hover (pure CSS) */
+input[type="radio"]:hover::after {
+  content: "✨";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  animation: sparkle 0.6s ease;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(360deg);
+  }
+}
+
+/* ======================== Quiz Layout & Border Styling ======================== */
+
+/* Make radio button options display horizontally (side-by-side) */
+.text-center.text-lg .inline-block {
+  display: inline-block;
+}
+
+/* Add horizontal spacing between radio options */
+input[type="radio"] {
+  margin: 0 8px 8px 0; /* right and bottom margin */
+}
+
+/* Style the table borders - remove or soften gray borders */
+table.border-2.border-gray-300 {
+  border: 2px solid rgba(139, 92, 246, 0.2) !important; /* Purple semi-transparent */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.1);
+}
+
+/* Style table cell borders - soften or remove */
+td.border-2.border-gray-300 {
+  border: 1px solid rgba(139, 92, 246, 0.1) !important; /* Very light purple */
+  /* OR completely remove borders: */
+  /* border: none !important; */
+}
+
+/* Alternative: Add subtle gradient borders */
+table.w-full {
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3)) border-box;
+  border: 2px solid transparent;
+  border-radius: 16px;
+}
+
+/* Style the question/image cells */
+td.text-center:has(img) {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(236, 72, 153, 0.03));
+  border-radius: 12px;
+}
+
+/* Style the answer feedback cells */
+td:has(#answer1), 
+td:has(#answer2), 
+td:has(#answer3), 
+td:has(#answer4), 
+td:has(#answer5), 
+td:has(#answer6) {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+/* Spacing rows - add visual separation without harsh borders */
+tr {
+  border-bottom: 2px solid rgba(139, 92, 246, 0.05);
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+/* Add subtle hover effect on table rows */
+tr:hover td {
+  background: rgba(139, 92, 246, 0.02);
+  transition: background 0.3s ease;
 }

@@ -15,10 +15,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer1").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer1").className= "font-semibold text-lg quiz-correct";
 		}
+		
 		if(ans1[i].checked==true && (ans1[i].value=="False" || ans1[i].value=="false"))
 		{
-			document.getElementById("answer1").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer1").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer1").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans1[i].disabled = true;
 		
@@ -26,10 +29,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer2").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer2").className= "font-semibold text-lg quiz-correct";
 		}
+
 		if(ans2[i].checked==true && (ans2[i].value=="False" || ans2[i].value=="false"))
 		{
-			document.getElementById("answer2").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer2").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer2").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans2[i].disabled = true;
 		
@@ -37,10 +43,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer3").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer3").className= "font-semibold text-lg quiz-correct";
 		}
+
 		if(ans3[i].checked==true && (ans3[i].value=="False" || ans3[i].value=="false"))
 		{
-			document.getElementById("answer3").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer3").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer3").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans3[i].disabled = true;
 		
@@ -48,10 +57,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer4").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer4").className= "font-semibold text-lg quiz-correct";
 		}
+
 		if(ans4[i].checked==true && (ans4[i].value=="False" || ans4[i].value=="false"))
 		{
-			document.getElementById("answer4").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer4").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer4").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans4[i].disabled = true;
 		
@@ -59,10 +71,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer5").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer5").className= "font-semibold text-lg quiz-correct";
 		}
+
 		if(ans5[i].checked==true && (ans5[i].value=="False" || ans5[i].value=="false"))
 		{
-			document.getElementById("answer5").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer5").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer5").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans5[i].disabled = true;
 		
@@ -70,10 +85,13 @@ function CheckAnswer()
 		{
 			score++;
 			document.getElementById("answer6").innerHTML= "Congratulations!! You are correct";
+			document.getElementById("answer6").className= "font-semibold text-lg quiz-correct";
 		}
+
 		if(ans6[i].checked==true && (ans6[i].value=="False" || ans6[i].value=="false"))
 		{
-			document.getElementById("answer6").innerHTML= "Beep Wrong Answer! don't worry, Try again!";
+			document.getElementById("answer6").innerHTML= "Beep Beep!! Wrong Answer!<br>Don't worry, Try again!";
+			document.getElementById("answer6").className= "font-semibold text-lg quiz-wrong";
 		}
 		ans6[i].disabled = true;
 	}
@@ -106,9 +124,15 @@ function takequizagain()
 		ans6[i].checked = false;
 	}
 	document.getElementById("answer1").innerHTML= "";
+	document.getElementById("answer1").className= "font-semibold text-lg";
 	document.getElementById("answer2").innerHTML= "";
+	document.getElementById("answer2").className= "font-semibold text-lg";
 	document.getElementById("answer3").innerHTML= ""; //dom
+	document.getElementById("answer3").className= "font-semibold text-lg";
 	document.getElementById("answer4").innerHTML= "";
+	document.getElementById("answer4").className= "font-semibold text-lg";
 	document.getElementById("answer5").innerHTML= "";
+	document.getElementById("answer5").className= "font-semibold text-lg";
 	document.getElementById("answer6").innerHTML= "";
+	document.getElementById("answer6").className= "font-semibold text-lg";
 }
